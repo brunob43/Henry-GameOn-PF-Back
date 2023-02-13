@@ -1,6 +1,6 @@
 router.put("/:id", async (req, res) => {
   try {
-    const { ID, ID_Usuario, Nombre, Apellido, Email, Imagen, Type } = req.body;
+    const { ID, ID_Usuario, Nombre, Email, Imagen, Type } = req.body;
 
     await Videogame.update(
       {
