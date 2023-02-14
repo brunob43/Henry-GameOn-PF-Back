@@ -23,6 +23,7 @@ const apiData = async() => {
     }
 }
 
+<<<<<<< HEAD
 const dbData = async() => {
     const data= await User.findAll(
     //     {
@@ -43,6 +44,13 @@ const getAllUsers = async() => {
     const DatosDb= await dbData();
     return [...DatosApi,...DatosDb]
 }
+=======
+const allData = () => {}
+
+const allData = () => {}
+
+const getAllUsers = () => {}
+>>>>>>> e6f64eb18445f0c1770533f3858f177612912b17
 
 const createUser = () => {}
 
@@ -50,4 +58,4 @@ const updateUser = () => {}
 
 const deleteUser = () => {}
 
-module.exports = {apiData, dbData, getAllUsers, createUser, updateUser, deleteUser}
+module.exports = {allData, apiData, dbData, getAllUsers, createUser, updateUser, deleteUser}

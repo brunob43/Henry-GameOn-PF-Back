@@ -1,5 +1,6 @@
-const {apiData, dbData, getAllUsers, createUser, updateUser, deleteUser} = require("../controllers/index.js")
+
 const {User} = require("../db")
+const {getAllUsers, createUser, updateUser, deleteUser} = require("../controllers/index.js")
 
 const getUsersHandler = async(req,res) => {
 try {
