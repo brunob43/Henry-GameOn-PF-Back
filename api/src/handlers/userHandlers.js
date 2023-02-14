@@ -9,7 +9,7 @@ try {
     res.status(400).json({error:error.message})
 }
 }
-
+ 
 const getIDUsersHandler = async (req,res) => {
     try {
         const { id } =req.params;
