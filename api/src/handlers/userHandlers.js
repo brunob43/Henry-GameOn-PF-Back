@@ -1,4 +1,4 @@
-const {apiData, dbData, getAllUsers, createUser, updateUser, deleteUser} = require("../controllers/index.js")
+const {allData, apiData, dbData, getAllUsers, createUser, updateUser, deleteUser} = require("../controllers/index.js")
 
 const getUsersHandler = () => {}
 
