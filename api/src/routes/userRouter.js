@@ -11,10 +11,10 @@ userRouter.get("/", getUsersHandler)
 
 userRouter.get("/:id", getIDUsersHandler)
 
-userRouter.put("/:id", updateUsersHandler)
+userRouter.put("/:internal_id", updateUsersHandler)
 
 userRouter.post("/", postUsersHandler)
 
-userRouter.delete("/:id", deleteUsersHandler)
+userRouter.delete("/:internal_id", deleteUsersHandler)   //Borrado lógico
 
 module.exports = userRouter
