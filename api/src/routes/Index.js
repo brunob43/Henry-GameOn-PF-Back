@@ -1,20 +1,14 @@
-router.put("/:id", async (req, res) => {
-  try {
-    const { ID, ID_Usuario, Nombre, Email, Imagen, Type } = req.body;
+const { Router } = require('express');
+// Importar todos los routers;
+// Ejemplo: const authRouter = require('./auth.js');
 
-    await Videogame.update(
-      {
-        ID,
-        ID_Usuario,
-        Nombre,
-        Apellido,
-        Email,
-        Imagen,
-        Type,
-      },
-    );
-    res.status(200).send("se actualizo tu juego");
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+const userRouter = require("./userRouter");
+
+const router = Router();
+
+router.use("/users", userRouter)
+
+// Configurar los routers
+// Ejemplo: router.use('/auth', authRouter);
+
+module.exports = router;
