@@ -1,4 +1,4 @@
-const {Game} = require("../db")
+const {Doc} = require("../db")
 
 module.exports = {
 getGameHandler : () => {},

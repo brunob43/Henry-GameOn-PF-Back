@@ -17,10 +17,28 @@ module.exports = (sequelize) => {
         },
         doc_views:{
             type: DataTypes.INTEGER,
+            defaultValue: 0,
         },
         doc_author:{
             type: DataTypes.STRING,
+        },
+        doc_content:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        doc_image:{
+            type: DataTypes.STRING,
+            defaultValue: "",
+        },
+        doc_deleted:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
+       },
+       
+       {
+        timestamps: false
        }
+    
     );
 }

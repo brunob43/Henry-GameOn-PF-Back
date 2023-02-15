@@ -1,0 +1,81 @@
+const {Doc} = require("../db")
+const {getAllDocs} = require("../controllers/docController.js")
+
+const getDocHandler = async(req,res) => {
+try {
+    const users = await getAllDocs();
+    res.status(200).json(users)
+} catch (error) {
+    res.status(400).json({error:error.message})
+}
+}
+
+const getIdDocHandler = async (req,res) => {
+    try {
+        const { id } =req.params;
+        const user = await Doc.findOne({
+            where:{doc_id:id}});
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).send(`El id: ${id} no corresponde a un Usuario existente`)
+    }
+}
+
+const updateDocHandler = async(req,res) => {
+    try {
+        const { doc_id } = req.params;//para obtener info de un catalogo.
+        
+        const {
+
+          doc_name,
+          doc_topic,
+          doc_content,
+          doc_image
+          
+        } = req.body;
+        await Doc.update(
+        {
+        doc_name,
+        doc_topic,
+        doc_content,
+        doc_image,     
+        },
+        { where: { doc_id } }
+      );
+      res.status(200).send(`Se actualizó el documento ${doc_id}`)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
+const postDocHandler = async (req,res) => {
+  console.log(req.body) 
+    try {
+        const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body;
+        if(![doc_name,doc_content,doc_topic].every(Boolean)) return res.status(404).
+        send("Falta enviar datos");
+        const newDoc= await Doc.create({doc_name, doc_content, doc_image,doc_topic,doc_author})
+        res.status(200).json(newDoc)
+
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
+const deleteDocHandler = async (req,res) =>{
+    const { doc_id } = req.params;
+    console.log("1")
+    try {
+        await Doc.update({
+            doc_deleted: true
+        },{
+            where:{doc_id}
+        });
+        res.status(200).send(`El documento ${doc_id} fue eliminado`)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+ }
+
+
+module.exports = {getDocHandler, getIdDocHandler, updateDocHandler, postDocHandler, deleteDocHandler}
