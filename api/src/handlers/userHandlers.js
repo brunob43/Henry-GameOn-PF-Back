@@ -1,6 +1,10 @@
 
 const {User} = require("../db")
+<<<<<<< Updated upstream
 const {getAllUsers, createUser, updateUser, deleteUser} = require("../controllers/index.js")
+=======
+const {getAllUsers} = require("../controllers/userController.js")
+>>>>>>> Stashed changes
 
 const getUsersHandler = async(req,res) => {
 try {

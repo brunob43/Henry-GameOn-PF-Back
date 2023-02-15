@@ -1,9 +1,6 @@
 const { Router } = require("express")
 const {getUsersHandler, getIDUsersHandler, updateUsersHandler, postUsersHandler, deleteUsersHandler} = require("../handlers/userHandlers")
 
-
-
-
 const userRouter = Router()
 
 

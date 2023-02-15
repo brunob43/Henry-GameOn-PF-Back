@@ -15,6 +15,12 @@ module.exports = (sequelize) => {
             type:  DataTypes.STRING,
             allowNull: false
         },
+
+        game_directory:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        
         game_difficulty:{
             type: DataTypes.ENUM("Easy", "Medium", "Hard"),
             allowNull: false
