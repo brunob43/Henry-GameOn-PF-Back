@@ -1,5 +1,22 @@
-const apiGameData = () => {}
+const {Game} = require ("../db")
 
-const dbGameData = () => {}
+// const apiGameData = async () => {
+//     const apiGames = ["Juegos"]
 
-const allGameData = () => {}
+//     return apiGames
+// }
+
+const dbGameData = async () => {
+    const dbGames = await Game.findAll()
+
+    return dbGames
+}
+
+const allGameData = async () => {
+    //const apiGames = await apiGameData()
+    const dbGames = await dbGameData()
+
+    return [...dbGames]
+}
+
+module.exports = {allGameData}

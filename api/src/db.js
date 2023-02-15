@@ -37,8 +37,8 @@ const {User , Game, Doc, Donation,} = sequelize.models;
 
 User.hasMany(Donation)
 
-User.hasMany(Doc, {through: "UserDoc"}, {timeStamps: false})
-Doc.hasMany(User, {through: "UserDoc"}, {timeStamps: false})
+User.belongsToMany(Doc, {through: "UserDoc"}, {timeStamps: false})
+Doc.belongsToMany(User, {through: "UserDoc"}, {timeStamps: false})
 
 User.belongsToMany(Game, {through: "UserGame"}, {timeStamps: false})
 Game.belongsToMany(User, {through: "UserGame"}, {timeStamps: false})

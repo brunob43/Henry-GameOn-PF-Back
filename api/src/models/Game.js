@@ -27,7 +27,12 @@ module.exports = (sequelize) => {
         },
 
         game_views:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        game_deleted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
 
        },
