@@ -1,43 +1,44 @@
 const { DataTypes, INTEGER } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define("Game",{
-        game_id:{
+    sequelize.define("Doc",{
+        doc_id:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        game_name:{
+        doc_name:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        game_topic:{
+        doc_topic:{
             type:  DataTypes.STRING,
             allowNull: false
         },
-
-        game_directory:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        
-        game_difficulty:{
-            type: DataTypes.ENUM("Easy", "Medium", "Hard"),
-            allowNull: false
-        },
-
-        game_views:{
+        doc_views:{
             type: DataTypes.INTEGER,
-            defaultValue: 0
+            defaultValue: 0,
         },
-        game_deleted: {
+        doc_author:{
+            type: DataTypes.STRING,
+        },
+        doc_content:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        doc_image:{
+            type: DataTypes.STRING,
+            defaultValue: "",
+        },
+        doc_deleted:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-
        },
+       
        {
         timestamps: false
        }
+    
     );
 }

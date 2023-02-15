@@ -43,4 +43,5 @@ const getAllUsers = async() => {
     const DatosDb= await dbData();
     return [...DatosApi,...DatosDb]
 }
+
 module.exports = {getAllUsers}
