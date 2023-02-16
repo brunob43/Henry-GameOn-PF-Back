@@ -1,5 +1,5 @@
 const axios= require("axios");
-const {Doc} = require("../db.js")
+const {Doc,User} = require("../db.js")
 
 // const DocData = () => {
 //     try {
@@ -24,15 +24,15 @@ const {Doc} = require("../db.js")
 const dbDocData = async() => {
 
         const data= await Doc.findAll(
-        //     {
-        //     include:{
-        //         model:Game,
-        //         attributes:["name"],
-        //         through:{
-        //             attributes:[]
-        //         }
-        //     }   
-        // }
+            {
+            include:{
+                model:User,
+                attributes:["user_name"],
+                through:{
+                    attributes:[]
+                }
+            }   
+        }
         );
         return data;
     }

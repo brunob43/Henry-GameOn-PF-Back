@@ -1,4 +1,4 @@
-const {Game} = require ("../db")
+const {Game, User} = require ("../db")
 
 // const apiGameData = async () => {
 //     const apiGames = ["Juegos"]
@@ -7,7 +7,15 @@ const {Game} = require ("../db")
 // }
 
 const dbGameData = async () => {
-    const dbGames = await Game.findAll()
+    const dbGames = await Game.findAll({
+        include:{
+            model:User,
+            attributes:["user_name"],
+            through:{
+                attributes:[]
+            }
+        }   
+    })
 
     return dbGames
 }
