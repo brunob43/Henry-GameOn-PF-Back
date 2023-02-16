@@ -40,11 +40,9 @@ const dbData = async() => {
             }
         }
         ,{
-            model:Donation
-            // attributes:["donation_id"],
-            // through:{
-            //     attributes:[]
-            // }   
+            model:Donation,
+            attributes:["donation_id"],
+
         }
     ]    
         }
