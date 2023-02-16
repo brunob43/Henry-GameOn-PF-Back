@@ -9,18 +9,19 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             allowNull: false,
         },
-        name: DataTypes.STRING,
-      info: DataTypes.STRING
-     }, {
-        associate: function (db) {
-          Donation.hasMany(db.User);
-        },
-      
+        donation_name:{
+            type:DataTypes.STRING,
+            allowNull: false,
+        },    
+        donation_info:{
+            type:DataTypes.STRING,
+            allowNull: false,
+        } ,
         donation_quantity:{
             type: DataTypes.INTEGER, 
             allowNull: false,
         }
-    },
+     },
     {
         timestamps: false
        }

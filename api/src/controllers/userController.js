@@ -1,5 +1,5 @@
 const axios= require("axios");
-const {User,Game} = require("../db.js")
+const {User,Game,Doc,Donation} = require("../db.js")
 
 const apiData = async() => {
     try {
@@ -25,15 +25,27 @@ const apiData = async() => {
 
 const dbData = async() => {
     const data= await User.findAll(
-    //     {
-    //     include:{
-    //         model:Game,
-    //         attributes:["name"],
-    //         through:{
-    //             attributes:[]
-    //         }
-    //     }   
-    // }
+        {
+        include:[{
+            model:Game,
+            attributes:["game_name"],
+            through:{
+                attributes:[]
+            }
+        },{
+            model:Doc,
+            attributes:["doc_name"],
+            through:{
+                attributes:[]
+            }
+        }
+        ,{
+            model:Donation,
+            attributes:["donation_id"],
+
+        }
+    ]    
+        }
     );
     return data;
 }
