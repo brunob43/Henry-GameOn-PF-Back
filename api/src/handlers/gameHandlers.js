@@ -7,8 +7,6 @@ getGameHandler : async (req, res) => {
     try {
         const { name } = req.query;
         const allGames = await allGameData()
-        console.log(name)
-        console.log(allGames)
         if (name) {
             let gamesName = allGames.filter((game) => game.game_name.toLowerCase().includes(name.toLowerCase()))
             if (gamesName.length) {
@@ -39,9 +37,9 @@ getIdGameHandler : async (req, res) => {
 },
 postGameHandler : async (req, res) => {
     try {
-        const {game_name, game_topic, game_directory, game_difficulty} = req.body
-        if(![game_name, game_topic, game_directory, game_difficulty].every(Boolean)) return res.status(404).send("Falta enviar datos");
-        const newGame= await Game.create({game_name, game_topic, game_directory, game_difficulty });
+        const {game_name, game_topic, game_image, game_difficulty} = req.body
+        if(![game_name, game_topic, game_image, game_difficulty].every(Boolean)) return res.status(404).send("Falta enviar datos");
+        const newGame= await Game.create({game_name, game_topic, game_image, game_difficulty });
         res.status(200).json(newGame)
 
     } catch (error) {
