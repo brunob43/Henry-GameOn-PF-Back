@@ -15,17 +15,13 @@ module.exports = (sequelize) => {
             type:  DataTypes.STRING,
             allowNull: false
         },
-
-        game_directory:{
-            type: DataTypes.STRING,
-            allowNull: false
+        game_image:{
+            type: DataTypes.TEXT(10000)
         },
-        
         game_difficulty:{
             type: DataTypes.ENUM("Easy", "Medium", "Hard"),
             allowNull: false
         },
-
         game_views:{
             type: DataTypes.INTEGER,
             defaultValue: 0
@@ -34,7 +30,6 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-
        },
        {
         timestamps: false
