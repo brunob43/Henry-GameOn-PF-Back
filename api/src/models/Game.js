@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         game_image:{
-            type: DataTypes.TEXT(10000)
+            type: DataTypes.TEXT('long')
         },
         game_difficulty:{
             type: DataTypes.ENUM("Easy", "Medium", "Hard"),
