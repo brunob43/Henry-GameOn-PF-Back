@@ -2,12 +2,21 @@ const {Doc} = require("../db")
 const {getAllDocs} = require("../controllers/docController.js")
 
 const getDocHandler = async(req,res) => {
-try {
-    const users = await getAllDocs();
-    res.status(200).json(users)
-} catch (error) {
-    res.status(400).json({error:error.message})
-}
+    try {
+        const { name } = req.query;
+        const allDocs = await getAllDocs()
+        if (name) {
+            let DocsName = allDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
+            if (DocsName.length) {
+                res.status(200).json(DocsName)
+            } else throw Error(`Resultados no encontrados`);
+        }
+        else res.status(200).json(allDocs)
+
+    } catch (error) {
+        res.status(400).json({error: error.message})
+
+    }
 }
 
 const getIdDocHandler = async (req,res) => {
