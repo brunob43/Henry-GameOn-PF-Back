@@ -4,6 +4,6 @@ const port = process.env.PORT
 
 conn.sync({ force: false }).then(() => {
   server.listen(port, () => {
-    console.log('%s listening at 3001');
+    console.log(`%s listening at ${port}`);
   });
 });
