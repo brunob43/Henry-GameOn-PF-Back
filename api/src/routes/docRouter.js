@@ -9,7 +9,7 @@ docRouter.get("/:id", getIdDocHandler)
 
 docRouter.put("/:doc_id", updateDocHandler) //solo borra el que creo el users
 
-docRouter.post("/", postDocHandler)
+docRouter.post("/postDoc", postDocHandler)
 
 docRouter.delete("/:doc_id", deleteDocHandler)   //Borrado lógico solo borra el admin
 
