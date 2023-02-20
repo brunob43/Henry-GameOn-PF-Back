@@ -9,6 +9,14 @@ const paymentRouter = Router()
 paymentRouter.get("/", function (req, res, next) {
     PaymentInstance.getPaymentLink(req, res);
   });
+
+  // paymentRouter.get("/50", function (req, res, next) {
+  //   PaymentInstance.getPaymentLink(req, res);
+  // });
+
+  // paymentRouter.get("/100", function (req, res, next) {
+  //   PaymentInstance.getPaymentLink(req, res);
+  // });
   
 paymentRouter.post("/", paymentPostHandlers) // Comenzar luego de el Deploy en donationHandler y paymentHandler
 
