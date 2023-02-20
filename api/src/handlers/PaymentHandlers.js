@@ -5,15 +5,15 @@ class PaymentHandler {
     const url = "https://api.mercadopago.com/checkout/preferences";
 
     const body = {
-      payer_email: "test_user_1311245836@testuser.com",
+      payer_email: "",
       items: [
         {
-          title: "Dummy Title",
-          description: "Dummy description",
+          title: "donacion de $1",
+          description: "donacion de prueba en cuentas reales",
           picture_url: "http://www.myapp.com/myimage.jpg",
           category_id: "category123",
           quantity: 1,
-          unit_price: 10
+          unit_price: 1
         }
       ],
       back_urls: {
