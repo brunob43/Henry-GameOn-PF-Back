@@ -10,7 +10,7 @@ paymentRouter.get("/", function (req, res, next) {
     PaymentInstance.getPaymentLink(req, res);
   });
   
-paymentRouter.post("/payment", paymentPostHandlers) // Comenzar luego de el Deploy en donationHandler y paymentHandler
+paymentRouter.post("/", paymentPostHandlers) // Comenzar luego de el Deploy en donationHandler y paymentHandler
 
 
 module.exports = paymentRouter;

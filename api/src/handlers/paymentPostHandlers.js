@@ -4,7 +4,7 @@ const paymentPostHandler = async (req, res) => {
     try {
         const { id } = req.body
         if(![ id ].every(Boolean)) return res.status(404).send("Falta enviar datos");
-        const newPayment= await Payment.create({game_name});
+        const newPayment= await Payment.create({ id });
         res.status(200).json(newPayment)
 
     } catch (error) {
