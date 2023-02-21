@@ -1,4 +1,4 @@
-const { Message } = require("../models/Message")
+const { Message } = require("../db")
 // const {getAllDocs} = require("../controllers/docController.js")
 
 const getMessages = async (req,res)=>{
