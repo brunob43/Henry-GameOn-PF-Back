@@ -33,10 +33,11 @@ const getIdDocHandler = async (req,res) => {
 const docViewsHandler = async(req,res) => {
     const { doc_id } = req.params;
     try {
-        await Doc.update({
-            doc_views: doc_views + 1
-        },{
-            where:{doc_id}
+        const doc = await Doc.findOne({
+            where:{doc_id}});
+        let newViews =doc.doc_views + 1
+        await doc.update({
+            doc_views: newViews
         });
         res.status(200).send(`El documento ${doc_id} fue visto una vez mas`)
     } catch (error) {
