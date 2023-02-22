@@ -62,8 +62,8 @@ const getAllUsers = async() => {
 }
 
 const getAllDeletedUsers = async() => {
-    const DatosDb= await dbAllDeletedData();
-    return [...DatosDb]
+    const DatosDelDb= await dbAllDeletedData();
+    return [...DatosDelDb]
 } 
 
 module.exports = {getAllUsers, getAllDeletedUsers}

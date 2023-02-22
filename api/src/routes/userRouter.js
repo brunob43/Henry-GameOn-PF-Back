@@ -8,7 +8,7 @@ userRouter.get("/", getUsersHandler)
 
 userRouter.get("/:id", getIDUsersHandler)
 
-userRouter.get("/deleted?admin=true", getDelUsersHandler)
+userRouter.get("/del", getDelUsersHandler)
 
 userRouter.put("/:internal_id", updateUsersHandler)
 
