@@ -25,6 +25,7 @@ const getIdMessage= async(req,res) =>{
 const postMessage = async (req,res) => {
       try {
           const {message_email,message_issue, message_content} = req.body;
+          console.log(req.body)
           if(![message_email,message_content,message_issue].every(Boolean)) return res.status(404).
           send("Falta enviar datos");
           const newMessage= await Message.create({message_content, message_email,message_issue})
