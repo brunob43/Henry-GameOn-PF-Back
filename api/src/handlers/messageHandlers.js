@@ -1,9 +1,10 @@
 const { Message } = require("../db")
+const { getAllMessages} = require("../controllers/messageController")
 // const {getAllDocs} = require("../controllers/docController.js")
 
 const getMessages = async (req,res)=>{
     try {
-        const messages= await Message.findAll();
+        const messages= await getAllMessages();
         res.status(200).json(messages)
     } catch (error) {
         res.status(400).json({error:error.message})
@@ -11,8 +12,9 @@ const getMessages = async (req,res)=>{
 }
 
 const getIdMessage= async(req,res) =>{
+    const {id}=req.params;
     try {
-        const {id}=req.paramns;
+        
         const message = await Message.findOne({where:{message_id:id}});
         res.status(200).json(message)
     } catch (error) {
