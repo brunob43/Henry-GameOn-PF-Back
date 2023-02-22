@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         },
         doc_image:{
             type: DataTypes.STRING,
-            defaultValue: "https:images-ext-1.discordapp.net/external/235Bi5nWGij3sqDEm4r8Yv8mpY1m9P9aOYl3dXW5Mx0/https/thumbs.dreamstime.com/b/document-icon-vector-stack-paper-sheets-illustration-131104983.jpg"
+            defaultValue: "https://thumbs.dreamstime.com/b/document-icon-vector-stack-paper-sheets-illustration-131104983.jpg"
         },
         doc_deleted:{
             type: DataTypes.BOOLEAN,
