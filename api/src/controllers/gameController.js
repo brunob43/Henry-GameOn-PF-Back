@@ -8,6 +8,22 @@ const {Game, User} = require ("../db")
 
 const dbGameData = async () => {
     const dbGames = await Game.findAll({
+        where: { game_deleted : false },
+        include:{
+            model:User,
+            attributes:["user_name"],
+            through:{
+                attributes:[]
+            }
+        }   
+    })
+
+    return dbGames
+}
+
+const dbDeletedGameData = async () => {
+    const dbGames = await Game.findAll({
+        where: { game_deleted : true },
         include:{
             model:User,
             attributes:["user_name"],
@@ -27,4 +43,11 @@ const allGameData = async () => {
     return [...dbGames]
 }
 
-module.exports = {allGameData}
+const allDeletedGameData = async () => {
+    //const apiGames = await apiGameData()
+    const dbGames = await dbDeletedGameData()
+
+    return [...dbGames]
+}
+
+module.exports = {allGameData, allDeletedGameData}
