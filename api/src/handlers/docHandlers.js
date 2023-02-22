@@ -20,8 +20,8 @@ const getDocHandler = async(req,res) => {
 }
 
 const getIdDocHandler = async (req,res) => {
-    try {
-        const { id } =req.params;
+    const { id } =req.params;
+    try {    
         const user = await Doc.findOne({
             where:{doc_id:id}});
         res.status(200).json(user)
@@ -73,7 +73,6 @@ const postDocHandler = async (req,res) => {
 
 const deleteDocHandler = async (req,res) =>{
     const { doc_id } = req.params;
-    console.log("1")
     try {
         await Doc.update({
             doc_deleted: true
