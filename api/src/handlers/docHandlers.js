@@ -58,9 +58,10 @@ const updateDocHandler = async(req,res) => {
 }
 
 const postDocHandler = async (req,res) => {
-  console.log(req.body) 
+ 
     try {
-        const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body;
+        const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body; 
+        console.log(req.body) 
         if(![doc_name,doc_content,doc_topic].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
         const newDoc= await Doc.create({doc_name, doc_content, doc_image,doc_topic,doc_author})
