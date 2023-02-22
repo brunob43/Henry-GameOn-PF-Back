@@ -30,6 +30,20 @@ const getIdDocHandler = async (req,res) => {
     }
 }
 
+const docViewsHandler = async(req,res) => {
+    const { doc_id } = req.params;
+    try {
+        await Doc.update({
+            doc_views: doc_views + 1
+        },{
+            where:{doc_id}
+        });
+        res.status(200).send(`El documento ${doc_id} fue visto una vez mas`)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+ }
+
 const updateDocHandler = async(req,res) => {
     try {
         const { doc_id } = req.params;//para obtener info de un catalogo.
@@ -87,4 +101,4 @@ const deleteDocHandler = async (req,res) =>{
  }
 
 
-module.exports = {getDocHandler, getIdDocHandler, updateDocHandler, postDocHandler, deleteDocHandler}
+module.exports = {getDocHandler, getIdDocHandler, updateDocHandler, postDocHandler, deleteDocHandler, docViewsHandler}
