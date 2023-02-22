@@ -3,8 +3,8 @@ const {User,Game,Doc,Donation} = require("../db")
 const {getAllUsers, getAllDeletedUsers} = require("../controllers/userController.js")
 
 const getUsersHandler = async(req,res) => {
-const { del } = req.query;
-if (del) {
+const { deletedusers } = req.query
+if (!deletedusers) {
 try {
     const users = await getAllUsers();
     res.status(200).json(users)
@@ -13,7 +13,7 @@ try {
 }
 } else {
     try {
-        const users = await getAllUsers();
+        const users = await getAllDeletedUsers();
         res.status(200).json(users)
     } catch (error) {
         res.status(400).json({error:error.message})
