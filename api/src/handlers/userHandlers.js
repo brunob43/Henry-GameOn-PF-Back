@@ -24,8 +24,7 @@ const getIDUsersHandler = async (req,res) => {
     try {
         const { id } =req.params;
         const user = await User.findOne({
-            where:{user_id:id},
-            where:{user_deleted : false}});
+            where:{user_id:id, user_deleted : false}});
         res.status(200).json(user)
     } catch (error) {
         res.status(400).send(`El id: ${id} no corresponde a un Usuario existente`)
