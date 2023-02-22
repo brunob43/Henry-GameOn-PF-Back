@@ -3,7 +3,6 @@ const {getUsersHandler, getIDUsersHandler, updateUsersHandler, postUsersHandler,
 
 const userRouter = Router()
 
-
 userRouter.get("/", getUsersHandler)
 
 userRouter.get("/:id", getIDUsersHandler)

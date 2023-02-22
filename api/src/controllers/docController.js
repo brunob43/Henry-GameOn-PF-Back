@@ -25,6 +25,24 @@ const dbDocData = async() => {
 
         const data= await Doc.findAll(
             {
+            where: { doc_deleted : false },
+            include:{
+                model:User,
+                attributes:["user_name"],
+                through:{
+                    attributes:[]
+                }
+            }   
+        }
+        );
+        return data;
+    }
+
+    const dbDeletedDocData = async() => {
+
+        const data= await Doc.findAll(
+            {
+            where: { doc_deleted : true },
             include:{
                 model:User,
                 attributes:["user_name"],
@@ -43,6 +61,12 @@ const dbDocData = async() => {
         return [...DatosDb]
     }
 
-module.exports = {getAllDocs}
+    const getDeletedAllDocs = async() => {
+        //const DatosApi= await apiDocData();
+        const DatosDb= await dbDeletedDocData();
+        return [...DatosDb]
+    }
+
+module.exports = {getAllDocs, getDeletedAllDocs}
 
 

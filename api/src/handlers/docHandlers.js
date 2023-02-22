@@ -20,8 +20,8 @@ const getDocHandler = async(req,res) => {
 }
 
 const getIdDocHandler = async (req,res) => {
-    try {
-        const { id } =req.params;
+    const { id } =req.params;
+    try {    
         const user = await Doc.findOne({
             where:{doc_id:id}});
         res.status(200).json(user)
@@ -58,9 +58,10 @@ const updateDocHandler = async(req,res) => {
 }
 
 const postDocHandler = async (req,res) => {
-  console.log(req.body) 
+ 
     try {
-        const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body;
+        const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body; 
+        console.log(req.body) 
         if(![doc_name,doc_content,doc_topic].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
         const newDoc= await Doc.create({doc_name, doc_content, doc_image,doc_topic,doc_author})
@@ -73,7 +74,6 @@ const postDocHandler = async (req,res) => {
 
 const deleteDocHandler = async (req,res) =>{
     const { doc_id } = req.params;
-    console.log("1")
     try {
         await Doc.update({
             doc_deleted: true
