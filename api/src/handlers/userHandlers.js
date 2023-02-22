@@ -3,20 +3,21 @@ const {User,Game,Doc,Donation} = require("../db")
 const {getAllUsers, getAllDeletedUsers} = require("../controllers/userController.js")
 
 const getUsersHandler = async(req,res) => {
+const { del } = req.query;
+if (del) {
 try {
     const users = await getAllUsers();
     res.status(200).json(users)
 } catch (error) {
     res.status(400).json({error:error.message})
 }
-}
-
-const getDelUsersHandler = async(req,res) => {
-try {
-    const users = await getAllDeletedUsers();
-    res.status(200).json(users)
-} catch (error) {
-    res.status(400).json({error:error.message})
+} else {
+    try {
+        const users = await getAllUsers();
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
 }
 }
  
@@ -113,4 +114,4 @@ const deleteUsersHandler = async (req,res) =>{
  }
 
 
-module.exports = {getUsersHandler, getIDUsersHandler, updateUsersHandler, postUsersHandler, deleteUsersHandler, getDelUsersHandler}
+module.exports = {getUsersHandler, getIDUsersHandler, updateUsersHandler, postUsersHandler, deleteUsersHandler}
