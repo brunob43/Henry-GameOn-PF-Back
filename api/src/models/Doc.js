@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         doc_content:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT('long'),
             allowNull: false,
         },
         doc_image:{
