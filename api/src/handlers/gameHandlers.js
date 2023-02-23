@@ -47,6 +47,20 @@ postGameHandler : async (req, res) => {
 
     }
 },
+gamesViewsHandler : async(req,res) => {
+    const { game_id } = req.params;
+    try {
+        const game = await Game.findOne({
+            where:{game_id}});
+        let newViews =game.game_views + 1
+        await game.update({
+            game_views: newViews
+        });
+        res.status(200).send(`El juego ${game_id} fue visto una vez mas`)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+ },
 
 updateGameHandler : async (req, res) => {
     try {
