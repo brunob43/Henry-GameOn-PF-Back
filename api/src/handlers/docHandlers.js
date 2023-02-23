@@ -76,10 +76,17 @@ const postDocHandler = async (req,res) => {
  
     try {
         const {doc_name, doc_image,doc_topic, doc_content,doc_author} = req.body; 
+        let imageUrl = ""
+        if (doc_image) {
+            imageUrl = doc_image
+        } else {
+            imageUrl = "https://thumbs.dreamstime.com/b/document-icon-vector-stack-paper-sheets-illustration-131104983.jpg"
+        }
+
         console.log(req.body) 
         if(![doc_name,doc_content,doc_topic].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
-        const newDoc= await Doc.create({doc_name, doc_content, doc_image,doc_topic,doc_author})
+        const newDoc= await Doc.create({doc_name, doc_content, doc_image : imageUrl,doc_topic,doc_author})
         res.status(200).json(newDoc)
 
     } catch (error) {
