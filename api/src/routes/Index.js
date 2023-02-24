@@ -21,6 +21,7 @@ router.use("/game", gameRouter)
 router.use("/doc", docRouter)
 router.use("/message", messageRouter)
 router.use("/auth", authRouter)
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

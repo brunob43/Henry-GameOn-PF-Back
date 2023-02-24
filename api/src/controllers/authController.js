@@ -1,4 +1,4 @@
-const { httpError } = require('../helpers/handleError')
+const { httpError } = require('../handlers/authHandler')
 const { encrypt, compare } = require('../handlers/authHandler')
 const { tokenSign } = require('../handlers/authHandler')
 const {User} = require("../db.js")
