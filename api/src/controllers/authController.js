@@ -1,7 +1,7 @@
 const { httpError } = require('../handlers/authHandler')
 const { encrypt, compare } = require('../handlers/authHandler')
 const { tokenSign } = require('../handlers/authHandler')
-const User = require("../models/User")
+const User = require("../db")
 
 //TODO: Login!
 const loginCtrl = async (req, res) => {
