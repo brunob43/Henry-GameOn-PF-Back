@@ -62,4 +62,4 @@ const checkOrigin = (req, res, next) => {
 }
 
 
-module.exports = checkAuth, checkRoleAuth, checkOrigin
+module.exports = {checkAuth, checkRoleAuth, checkOrigin}

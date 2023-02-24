@@ -17,4 +17,4 @@ const validateCreate = [ //TODO:name, age, email
 
 
 
-module.exports = { validateCreate }
+module.exports = validateCreate

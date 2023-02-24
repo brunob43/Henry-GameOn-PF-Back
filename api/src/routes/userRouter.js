@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const {getUsersHandler, getIDUsersHandler, updateUsersHandler, postUsersHandler, deleteUsersHandler} = require("../handlers/userHandlers")
 const {checkAuth, checkRoleAuth, checkOrigin}  = require('../middleware/authUser')
-const { validateCreate } = require('../validators/validatorUser')
+const validateCreate  = require('../validators/validatorUser')
 const userRouter = Router()
 
 userRouter.get("/", checkAuth, checkRoleAuth(['admin']), getUsersHandler)
