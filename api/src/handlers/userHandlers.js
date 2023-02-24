@@ -31,6 +31,7 @@ const updateUsersHandler = async(req,res) => {
           user_image,
           user_type,
           user_state,
+          user_password,
           game_id,
           doc_id,
           donation_id,
@@ -45,6 +46,7 @@ const updateUsersHandler = async(req,res) => {
         user_image,
         user_type,
         user_state,
+        user_password
         },
         { where: { internal_id } }
       );
