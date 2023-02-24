@@ -10,7 +10,7 @@ const loginCtrl = async (req, res) => {
 
         console.log(user_email, user_password)
 
-        const user = await User.findOne({where: { user_deleted : true }})
+        const user = await User.findOne({where: { user_email }})
 
         console.log(user)
 
