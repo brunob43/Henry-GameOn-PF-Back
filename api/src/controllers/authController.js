@@ -40,8 +40,9 @@ const loginCtrl = async (req, res) => {
             return
         }
 
-    } catch (e) {
-        httpError(res, e)
+    } catch (error) {
+        //httpError(res, e)
+        res.status(400).json({ error })
     }
 }
 
@@ -60,8 +61,9 @@ const registerCtrl = async (req, res) => {
 
         res.send({ data: registerUser })
 
-    } catch (e) {
-        httpError(res, e)
+    } catch (error) {
+        //httpError(res, e)
+        res.status(400).json({ error })
     }
 }
 module.exports = { loginCtrl, registerCtrl }
