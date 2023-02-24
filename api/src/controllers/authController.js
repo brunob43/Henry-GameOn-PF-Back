@@ -1,14 +1,14 @@
 const { httpError } = require('../handlers/authHandler')
 const { encrypt, compare } = require('../handlers/authHandler')
 const { tokenSign } = require('../handlers/authHandler')
-const {User} = require("../db.js")
+const User = require("../db.js")
 
 //TODO: Login!
 const loginCtrl = async (req, res) => {
     try {
         const { user_email, user_password } = req.body
 
-        const user = await User.findOne({ user_email })
+        const user = await User.findOne({where : {user_email}})
 
         if (!user) {
             res.status(404)
