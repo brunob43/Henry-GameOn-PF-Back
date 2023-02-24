@@ -30,7 +30,7 @@ const checkRoleAuth = (roles) => async (req, res, next) => {
         const userData = await User.findById(tokenData._id) //TODO: 696966
 
         //TODO ['user'].includes('user')
-        if ([].concat(roles).includes(userData.role)) { //TODO:
+        if ([].concat(roles).includes(userData.user_role)) { //TODO:
             next()
         } else {
             res.status(409)
