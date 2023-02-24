@@ -4,7 +4,7 @@ const {checkAuth, checkRoleAuth, checkOrigin}  = require('../middleware/authUser
 const validateCreate  = require('../validators/validatorUser')
 const userRouter = Router()
 
-userRouter.get("/", checkAuth, checkRoleAuth(['admin']), getUsersHandler)
+userRouter.get("/", checkAuth, /*checkRoleAuth(['admin']),*/ getUsersHandler)
 
 userRouter.get("/:id", checkOrigin ,getIDUsersHandler)
 

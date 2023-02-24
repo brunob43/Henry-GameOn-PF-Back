@@ -9,6 +9,7 @@ const docRouter = require("./docRouter");
 const paymentRouter = require("./paymentRouter")
 const messageRouter = require("./messageRouter")
 const deletedRouter = require("./deletedRouter")
+const authRouter = require("./authRouter")
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.use("/users", userRouter)
 router.use("/game", gameRouter)
 router.use("/doc", docRouter)
 router.use("/message", messageRouter)
+router.use("/auth", authRouter)
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
