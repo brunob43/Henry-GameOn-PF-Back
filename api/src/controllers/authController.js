@@ -5,7 +5,7 @@ const { User } = require("../db")
 
 //TODO: Login!
 const loginCtrl = async (req, res) => {
-    try {
+
         const { user_email, user_password } = req.body
 
         console.log(user_email, user_password)
@@ -39,11 +39,6 @@ const loginCtrl = async (req, res) => {
             })
             return
         }
-
-    } catch (error) {
-        //httpError(res, e)
-        res.status(400).json({ error })
-    }
 }
 
 //TODO: Registramos usuario!
