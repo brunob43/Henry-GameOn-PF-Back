@@ -10,7 +10,7 @@ const loginCtrl = async (req, res) => {
 
         const user = await User.findOne({where : {user_email}})
 
-        if (!user) {
+        if (!user.length) {
             res.status(404)
             res.send({ error: 'User not found' })
         }
