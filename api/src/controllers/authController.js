@@ -8,6 +8,8 @@ const loginCtrl = async (req, res) => {
     try {
         const { user_email, user_password } = req.body
 
+        console.log(user_email, user_password)
+
         const user = await User.findOne({where : {user_email}})
 
         console.log(user)
