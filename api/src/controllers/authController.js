@@ -14,9 +14,8 @@ const loginCtrl = async (req, res) => {
 
         console.log(user)
 
-        if (!user.length) {
-            res.status(404)
-            res.send({ error: 'User not found' })
+        if (!user) {
+        res.status(404).send({ error: 'User not found' })
         }
 
         const checkPassword = await compare(user_password, user.user_password) //TODO: Contraseña!
@@ -25,19 +24,11 @@ const loginCtrl = async (req, res) => {
         const tokenSession = await tokenSign(user) //TODO: 2d2d2d2d2d2d2
 
         if (checkPassword) { //TODO Contraseña es correcta!
-            res.send({
-                data: user,
-                tokenSession
-            })
-            return
+        return res.status(200).send({data: user,tokenSession})
         }
 
         if (!checkPassword) {
-            res.status(409)
-            res.send({
-                error: 'Invalid password'
-            })
-            return
+        return res.status(409).send({error: 'Invalid password'})
         }
 }
 
@@ -54,7 +45,7 @@ const registerCtrl = async (req, res) => {
             user_password: passwordHash
         })
 
-        res.send({ data: registerUser })
+        res.status(200).send({ data: registerUser })
 
     } catch (error) {
         //httpError(res, e)
