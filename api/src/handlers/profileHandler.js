@@ -5,7 +5,9 @@ const { User } = require("../db.js");
 const profileHandler = async (req,res) => {
     try {
         const { user_name, user_email, user_image } = req.body;
+        console.log(req.body, "Cuerpito")
         const loadedUser = await User.findOne ({ where: {user_email} });
+        console.log(loadedUser, "usuarioCargado")
         if (loadedUser) {
             res.status(200).json(loadedUser);
 
