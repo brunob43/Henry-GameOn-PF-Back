@@ -1,11 +1,12 @@
 const { profileHandler } = require ("../handlers/profileHandler");
-const express = require("express");
-const router = express.Router();
 
-const profileRouter = router();
+const { Router } = express();
+
+const profileRouter = Router();
 
 
 profileRouter.post('/', profileHandler);
 
 
 module.exports = profileRouter;
+
