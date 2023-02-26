@@ -15,7 +15,14 @@ const profileHandler = async (req,res) => {
             
             if(![user_name,user_email].every(Boolean)) return res.status(404).
             send("Falta enviar datos");
-            const newUser= await User.create({user_name, user_email, user_image, user_password})
+            if (user_password == undefined) {
+                user_password = "";
+                const newUser= await User.create({user_name, user_email, user_image, user_password})
+
+            } else {
+                const newUser= await User.create({user_name, user_email, user_image, user_password})
+            }
+
             res.status(200).json(newUser);
 
         };
