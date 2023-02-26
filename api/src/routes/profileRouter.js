@@ -1,10 +1,11 @@
-import { profileHandler } from "../handlers/profileHandler";
-
+const { profileHandler } = require ("../handlers/profileHandler");
 const express = require("express");
 const router = express.Router();
 
+const profileRouter = router();
 
-router.post('/', profileHandler);
+
+profileRouter.post('/', profileHandler);
 
 
-module.exports = router;
+module.exports = profileRouter;
