@@ -80,11 +80,17 @@ const updateUsersHandler = async(req,res) => {
 
 const postUsersHandler = async (req,res) => {
     try {
-        const {user_name, user_email, user_image, user_type, user_state } = req.body;
-        if(![user_name,user_email].every(Boolean)) return res.status(404).
+        const {user_name, user_email, user_image,user_password} = req.body;
+        if(![user_email].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
-        const newUser= await User.create({user_name, user_email, user_image, user_type, user_state })
-        res.status(200).json(newUser)
+        const usuarioCargado= User.findAll({where:{user_email}})
+        if(usuarioCargado.length){
+            res.status(200).send("Usuario ya existente")
+        }else{
+            
+            const newUser= await User.create({user_name, user_email, user_image,user_password })
+            res.status(200).json(newUser)
+        }
 
     } catch (error) {
         res.status(400).json({error:error.message})
