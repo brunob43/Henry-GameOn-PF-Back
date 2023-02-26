@@ -4,7 +4,7 @@ const { User } = require("../db.js");
 
 const profileHandler = async (req,res) => {
     try {
-        const { user_name, user_email, user_image } = req.body;
+        const { user_name, user_email, user_image, user_password } = req.body;
         console.log(req.body, "Cuerpito")
         const loadedUser = await User.findAll ({ where: {user_email} });
         console.log(loadedUser, "usuarioCargado")
@@ -15,7 +15,7 @@ const profileHandler = async (req,res) => {
             
             if(![user_name,user_email].every(Boolean)) return res.status(404).
             send("Falta enviar datos");
-            const newUser= await User.create({user_name, user_email, user_image})
+            const newUser= await User.create({user_name, user_email, user_image, user_password})
             res.status(200).json(newUser);
 
         };
