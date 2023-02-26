@@ -4,7 +4,7 @@ const { User } = require("../db.js");
 
 const profileHandler = async (req,res) => {
     try {
-        const { user_name, user_email, user_image, user_password } = req.body;
+        let { user_name, user_email, user_image, user_password } = req.body;
         console.log(req.body, "Cuerpito")
         const loadedUser = await User.findAll ({ where: {user_email} });
         console.log(loadedUser, "usuarioCargado")
