@@ -8,7 +8,7 @@ const profileHandler = async (req,res) => {
         console.log(req.body, "Cuerpito")
         const loadedUser = await User.findAll ({ where: {user_email} });
         console.log(loadedUser, "usuarioCargado")
-        if (loadedUser) {
+        if (loadedUser.length) {
             res.status(200).json(loadedUser);
 
         } else {
