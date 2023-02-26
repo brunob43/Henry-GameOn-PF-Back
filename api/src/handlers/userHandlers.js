@@ -83,7 +83,7 @@ const postUsersHandler = async (req,res) => {
         const {user_name, user_email, user_image,user_password} = req.body;
         if(![user_email].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
-        const usuarioCargado= User.findAll({where:{user_email}})
+        const usuarioCargado= await User.findAll({where:{user_email}})
         console.log("usuarioC",usuarioCargado)
         if(usuarioCargado.length>0){
             res.status(200).send("Usuario ya existente")
