@@ -1,10 +1,10 @@
-import { profileController } from "../controllers/profileController";
+import { profileHandler } from "../handlers/profileHandler";
 
-const express = require("express")
-const router = express.Router()
-
-
-router.post('/', profileController)
+const express = require("express");
+const router = express.Router();
 
 
-module.exports = router
+router.post('/', profileHandler);
+
+
+module.exports = router;
