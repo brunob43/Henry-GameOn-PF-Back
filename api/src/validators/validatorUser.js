@@ -7,7 +7,7 @@ const validateCreate = [ //TODO:name, age, email
         .not()
         .isLength({ min: 5 })
         .isEmpty(),
-    check('email')
+    check('user_email')
         .exists()
         .isEmail(),
     (req, res, next) => {
@@ -17,4 +17,4 @@ const validateCreate = [ //TODO:name, age, email
 
 
 
-module.exports = { validateCreate }
+module.exports = validateCreate

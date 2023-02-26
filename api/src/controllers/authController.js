@@ -1,18 +1,21 @@
-const { httpError } = require('../helpers/handleError')
+const { httpError } = require('../handlers/authHandler')
 const { encrypt, compare } = require('../handlers/authHandler')
 const { tokenSign } = require('../handlers/authHandler')
-const {User} = require("../db.js")
+const { User } = require("../db")
 
 //TODO: Login!
 const loginCtrl = async (req, res) => {
-    try {
+
         const { user_email, user_password } = req.body
 
-        const user = await User.findOne({ user_email })
+        console.log(user_email, user_password)
+
+        const user = await User.findOne({where: { user_email }})
+
+        console.log(user)
 
         if (!user) {
-            res.status(404)
-            res.send({ error: 'User not found' })
+        res.status(404).send({ error: 'User not found' })
         }
 
         const checkPassword = await compare(user_password, user.user_password) //TODO: Contraseña!
@@ -21,24 +24,12 @@ const loginCtrl = async (req, res) => {
         const tokenSession = await tokenSign(user) //TODO: 2d2d2d2d2d2d2
 
         if (checkPassword) { //TODO Contraseña es correcta!
-            res.send({
-                data: user,
-                tokenSession
-            })
-            return
+        return res.status(200).send({data: user,tokenSession})
         }
 
         if (!checkPassword) {
-            res.status(409)
-            res.send({
-                error: 'Invalid password'
-            })
-            return
+        return res.status(409).send({error: 'Invalid password'})
         }
-
-    } catch (e) {
-        httpError(res, e)
-    }
 }
 
 //TODO: Registramos usuario!
@@ -54,10 +45,11 @@ const registerCtrl = async (req, res) => {
             user_password: passwordHash
         })
 
-        res.send({ data: registerUser })
+        res.status(200).send({ data: registerUser })
 
-    } catch (e) {
-        httpError(res, e)
+    } catch (error) {
+        //httpError(res, e)
+        res.status(400).json({ error })
     }
 }
 module.exports = { loginCtrl, registerCtrl }
