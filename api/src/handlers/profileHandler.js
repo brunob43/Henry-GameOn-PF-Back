@@ -1,5 +1,5 @@
 
-const { User } = require("../db.js");
+const { User, Game,Doc } = require("../db.js");
 
 
 const profileHandler = async (req,res) => {
@@ -24,8 +24,7 @@ const profileHandler = async (req,res) => {
             }
             ,{
                 model:Donation,
-                attributes:["donation_id"],
-    
+                attributes:["donation_id"]
             }
         ]  });
         console.log(loadedUser, "usuarioCargado")
