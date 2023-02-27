@@ -8,7 +8,26 @@ const profileHandler = async (req,res) => {
         console.log(user_password,"password")
         if(![user_email].every(Boolean)) return res.status(404).
         send("Falta enviar datos");
-        const loadedUser = await User.findAll ({ where: {user_email} });
+        const loadedUser = await User.findAll ({ where: {user_email},
+            include:[{
+                model:Game,
+                attributes:["game_name"],
+                through:{
+                    attributes:[]
+                }
+            },{
+                model:Doc,
+                attributes:["doc_name"],
+                through:{
+                    attributes:[]
+                }
+            }
+            ,{
+                model:Donation,
+                attributes:["donation_id"],
+    
+            }
+        ]  });
         console.log(loadedUser, "usuarioCargado")
         if (loadedUser.length>0) {
             res.status(200).json(loadedUser[0]);
