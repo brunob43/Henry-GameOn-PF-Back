@@ -1,5 +1,5 @@
 
-const { User, Game,Doc } = require("../db.js");
+const { User, Game,Doc,Donation } = require("../db.js");
 
 
 const profileHandler = async (req,res) => {
