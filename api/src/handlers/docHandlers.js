@@ -5,7 +5,7 @@ const getDocHandler = async(req,res) => {
     const { name } = req.query;
     const { admin } = req.body;
 
-    const allDocs = await allGameData()
+    const allDocs = await getAllDocs()
     const allDeletedDocs = await  getDeletedAllDocs()
 
     try {
