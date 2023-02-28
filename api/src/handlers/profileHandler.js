@@ -17,10 +17,10 @@ const profileHandler = async (req,res) => {
             send("Falta enviar datos");
             if (user_password == undefined) {
                 user_password = "";
-                const newUser= await User.create({user_name, user_email, user_image, user_password})
+                const newUser= await User.create({user_name, user_email, user_image, user_password});
 
             } else {
-                const newUser= await User.create({user_name, user_email, user_image, user_password})
+                const newUser= await User.create({user_name, user_email, user_image, user_password});
             }
 
             res.status(200).json(newUser);
