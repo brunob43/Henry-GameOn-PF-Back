@@ -8,25 +8,30 @@ const getDocHandler = async(req,res) => {
     const allDocs = await allGameData()
     const allDeletedDocs = await  getDeletedAllDocs()
 
+    try {
 
-    if(admin){
-        if (name) {
-            let docsName =  allDeletedDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
-            if (docsName.length) {
-                res.status(200).json(docsName)
-            } else throw Error(`Resultados no encontrados`);
-        } else{
-            res.status(200).json(allDeletedDocs)
+        if(admin){
+            if (name) {
+                let docsName =  allDeletedDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
+                if (docsName.length) {
+                    res.status(200).json(docsName)
+                } else throw Error(`Resultados no encontrados`);
+            } else{
+                res.status(200).json(allDeletedDocs)
+            }
+        }else{
+            if (name) {
+                let docsName = allDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
+                if (docsName.length) {
+                    res.status(200).json(docsName)
+                } else throw Error(`Resultados no encontrados`);
+            } else{
+                res.status(200).json(allDocs)
+            }
         }
-    }else{
-        if (name) {
-            let docsName = allDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
-            if (docsName.length) {
-                res.status(200).json(docsName)
-            } else throw Error(`Resultados no encontrados`);
-        } else{
-            res.status(200).json(allDocs)
-        }
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }
 

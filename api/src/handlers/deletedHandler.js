@@ -1,4 +1,4 @@
-const {User,Game,Doc,Donation} = require("../db")
+const {User,Game,Doc, Message} = require("../db")
 const {getAllDeletedUsers} = require("../controllers/userController.js")
 const {getDeletedAllDocs} = require("../controllers/docController.js")
 const {getAllAnsweredMessages} = require("../controllers/messageController")
