@@ -1,24 +1,37 @@
 
 const { Game } = require("../db")
-const {allGameData} = require("../controllers/gameController")
+const {allGameData,  allDeletedGameData} = require("../controllers/gameController")
+
 
 module.exports = {
 getGameHandler : async (req, res) => {
-    try {
-        const { name } = req.query;
-        const allGames = await allGameData()
+    const { name } = req.query;
+    const { admin } = req.body;
+
+    const allGames = await allGameData()
+    const allDeletedGames = await  allDeletedGameData()
+
+
+    if(admin){
+        if (name) {
+            let gamesName =  allDeletedGames.filter((game) => game.game_name.toLowerCase().includes(name.toLowerCase()))
+            if (gamesName.length) {
+                res.status(200).json(gamesName)
+            } else throw Error(`Resultados no encontrados`);
+        } else{
+            res.status(200).json( allDeletedGames)
+        }
+    }else{
         if (name) {
             let gamesName = allGames.filter((game) => game.game_name.toLowerCase().includes(name.toLowerCase()))
             if (gamesName.length) {
                 res.status(200).json(gamesName)
             } else throw Error(`Resultados no encontrados`);
+        } else{
+            res.status(200).json(allGames)
         }
-        else res.status(200).json(allGames)
-
-    } catch (error) {
-        res.status(400).json({error: error.message})
-
     }
+
 },
 
 getIdGameHandler : async (req, res) => {
