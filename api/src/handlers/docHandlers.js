@@ -1,21 +1,32 @@
 const {Doc} = require("../db")
-const {getAllDocs} = require("../controllers/docController.js")
+const {getAllDocs, getDeletedAllDocs} = require("../controllers/docController.js")
 
 const getDocHandler = async(req,res) => {
-    try {
-        const { name } = req.query;
-        const allDocs = await getAllDocs()
+    const { name } = req.query;
+    const { admin } = req.body;
+
+    const allDocs = await allGameData()
+    const allDeletedDocs = await  getDeletedAllDocs()
+
+
+    if(admin){
         if (name) {
-            let DocsName = allDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
-            if (DocsName.length) {
-                res.status(200).json(DocsName)
+            let docsName =  allDeletedDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
+            if (docsName.length) {
+                res.status(200).json(docsName)
             } else throw Error(`Resultados no encontrados`);
+        } else{
+            res.status(200).json(allDeletedDocs)
         }
-        else res.status(200).json(allDocs)
-
-    } catch (error) {
-        res.status(400).json({error: error.message})
-
+    }else{
+        if (name) {
+            let docsName = allDocs.filter((doc) => doc.doc_name.toLowerCase().includes(name.toLowerCase()))
+            if (docsName.length) {
+                res.status(200).json(docsName)
+            } else throw Error(`Resultados no encontrados`);
+        } else{
+            res.status(200).json(allDocs)
+        }
     }
 }
 
