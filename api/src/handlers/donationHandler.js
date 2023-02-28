@@ -1,9 +1,7 @@
 const {Donation} = require("../db")
 
 const donationHandler = async (req, res) => {
-
-    const allDonations = await Donation.findAll()
-
+const allDonations = await Donation.findAll()
     try {
         if (allDonations.length) {
             res.status(200).json(allDonations) 
@@ -11,8 +9,6 @@ const donationHandler = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
-
-
 }
 
 module.exports = {donationHandler}
