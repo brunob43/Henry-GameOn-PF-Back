@@ -42,7 +42,6 @@ const dbDocData = async() => {
 
         const data= await Doc.findAll(
             {
-            where: { doc_deleted : true },
             include:{
                 model:User,
                 attributes:["user_name"],

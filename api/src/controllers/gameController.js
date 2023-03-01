@@ -23,7 +23,7 @@ const dbGameData = async () => {
 
 const dbDeletedGameData = async () => {
     const dbGames = await Game.findAll({
-        where: { game_deleted : true },
+        
         include:{
             model:User,
             attributes:["user_name"],
