@@ -7,9 +7,9 @@ module.exports = {
     getGameHandler: async (req, res) => {
         
         const { name } = req.query;
-        const { admin } = req.body;
+        const { admin } = req.query;
         
-        console.log(req.body)
+        console.log(req.query)
 
 
         const allGames = await allGameData()
