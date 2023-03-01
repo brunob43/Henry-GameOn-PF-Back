@@ -3,7 +3,7 @@ const {getAllDocs, getDeletedAllDocs} = require("../controllers/docController.js
 
 const getDocHandler = async(req,res) => {
     const { name } = req.query;
-    const { admin } = req.body;
+    const { admin } = req.query;
 
     const allDocs = await getAllDocs()
     const allDeletedDocs = await  getDeletedAllDocs()
