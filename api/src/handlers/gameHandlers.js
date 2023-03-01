@@ -5,6 +5,8 @@ const { allGameData, allDeletedGameData } = require("../controllers/gameControll
 
 module.exports = {
     getGameHandler: async (req, res) => {
+        console.log(req.body)
+
         const { name } = req.query;
         const { admin } = req.body;
 
