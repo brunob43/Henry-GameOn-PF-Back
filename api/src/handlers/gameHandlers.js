@@ -102,15 +102,30 @@ module.exports = {
 
     deleteGameHandler: async (req, res) => {
         const { game_id } = req.params;
-        try {
-            await Game.update({
-                game_deleted: true
-            }, {
-                where: { game_id }
-            });
-            res.status(200).send(`El juego ${game_id} fue eliminado`)
-        } catch (error) {
-            res.status(400).json({ error: error.message })
+        const gameToDelete = await Game.findAll({where:{game_id}})
+    try {
+        if (gameToDelete.length) {
+            if (!gameToDelete[0].game_deleted){
+                Game.update({
+                    game_deleted: true
+                },{
+                    where:{game_id}
+                })
+                res.status(200).send(gameToDelete) 
+            } else {
+                Game.update({
+                    game_deleted: false
+                },{
+                    where:{game_id}
+                })
+            res.status(200).send(gameToDelete) 
+            }
+        } else {
+            throw Error ("El Juego no existe")
         }
+
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
     },
 }

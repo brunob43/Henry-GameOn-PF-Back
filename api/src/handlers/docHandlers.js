@@ -112,13 +112,28 @@ const postDocHandler = async (req,res) => {
 
 const deleteDocHandler = async (req,res) =>{
     const { doc_id } = req.params;
+    const docToDelete = await Doc.findAll({where:{doc_id}})
     try {
-        await Doc.update({
-            doc_deleted: true
-        },{
-            where:{doc_id}
-        });
-        res.status(200).send(`El documento ${doc_id} fue eliminado`)
+        if (docToDelete.length) {
+            if (!docToDelete[0].doc_deleted){
+                Doc.update({
+                    doc_deleted: true
+                },{
+                    where:{doc_id}
+                })
+                res.status(200).send(docToDelete) 
+            } else {
+                Doc.update({
+                    doc_deleted: false
+                },{
+                    where:{doc_id}
+                })
+            res.status(200).send(docToDelete) 
+            }
+        } else {
+            throw Error ("El Juego no existe")
+        }
+
     } catch (error) {
         res.status(400).json({error:error.message})
     }
