@@ -21,7 +21,7 @@ const getUsersHandler = async(req,res) => {
             }
         } else {
             if (name) {
-                let usersName = allusers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
+                let usersName = allUsers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
                 if (usersName.length) {
                     res.status(200).json(usersName)
                 } else throw Error(`Resultados no encontrados`);
