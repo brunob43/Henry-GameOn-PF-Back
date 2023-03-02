@@ -114,8 +114,9 @@ const postUsersHandler = async (req,res) => {
 const deleteUsersHandler = async (req,res) =>{
     const { internal_id } = req.params;
     const userToDelete = await User.findAll({where:{internal_id}})
+    const userToDeletePermanent = userToDelete
     try {
-        console.log(userToDelete.dataValues)
+        console.log(userToDeletePermanent)
         if (userToDelete.length) {
             if (!userToDelete.user_deleted){
                 User.update({
