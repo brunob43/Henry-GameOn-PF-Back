@@ -89,9 +89,9 @@ module.exports = {
         try {
             const { game_id } = req.params;//para obtener info de un catalogo.
             console.log(game_id)
-            const { game_name, game_topic, game_directory, game_difficulty } = req.body;
+            const { game_name, game_topic, game_image, game_difficulty } = req.body;
             await Game.update(
-                { game_name, game_topic, game_directory, game_difficulty },
+                { game_name, game_topic, game_image, game_difficulty },
                 { where: { game_id } }
             );
             res.status(200).send(`Se actualizó el juego ${game_id}`)
