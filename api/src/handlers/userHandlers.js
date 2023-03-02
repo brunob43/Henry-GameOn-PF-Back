@@ -114,24 +114,24 @@ const postUsersHandler = async (req,res) => {
 const deleteUsersHandler = async (req,res) =>{
     const { internal_id } = req.params;
     const userToDelete = await User.findAll({where:{internal_id}})
-    const userToDeletePermanent = userToDelete
+    let userToDeletePermanent = userToDelete
     try {
-        console.log(userToDeletePermanent)
-        if (userToDelete.length) {
-            if (!userToDelete.user_deleted){
+        console.log(userToDeletePermanent.User)
+        if (userToDeletePermanent.length) {
+            if (!userToDeletePermanent.user_deleted){
                 User.update({
                     user_deleted: true
                 },{
                     where:{internal_id}
                 })
-                res.status(200).send(userToDelete) 
+                res.status(200).send(userToDeletePermanent) 
             } else {
                 User.update({
                     user_deleted: false
                 },{
                     where:{internal_id}
                 })
-            res.status(200).send(userToDelete) 
+            res.status(200).send(userToDeletePermanent) 
             }
         } else {
             throw Error ("El usuario no existe")
