@@ -101,6 +101,32 @@ const postUsersHandler = async (req,res) => {
 const deleteUsersHandler = async (req,res) =>{
     const { internal_id } = req.params;
     try {
+
+        const user = await User.findAll({where:{internal_id}})
+
+        if (user.length) {
+            if (!user.user_deleted){
+                User.update({
+                    user_deleted: true
+                })
+                res.status(200).send(user) 
+            } else {
+                User.update({
+                    user_deleted: false
+                })
+            res.status(200).send(user) 
+            }
+        } else {
+            throw Error ("El usuario no existe")
+        }
+
+
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+    
+    
+    /*try {
         await User.update({
             user_deleted: true
         },{
@@ -109,7 +135,7 @@ const deleteUsersHandler = async (req,res) =>{
         res.status(200).send(`El usuario ${internal_id} fue eliminado`)
     } catch (error) {
         res.status(400).json({error:error.message})
-    }
+    }*/
  }
 
 
