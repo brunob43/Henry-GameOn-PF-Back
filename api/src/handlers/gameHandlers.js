@@ -7,7 +7,12 @@ module.exports = {
     getGameHandler: async (req, res) => {
         
         const { name } = req.query;
+        const { admin } = req.query;
+        
+        console.log(req.query)
 
+
+        const allGames = await allGameData()
         const allDeletedGames = await allDeletedGameData()
 
         try {
@@ -19,6 +24,15 @@ module.exports = {
                     } else throw Error(`Resultados no encontrados`);
                 } else {
                     res.status(200).json(allDeletedGames)
+                }
+            } else {
+                if (name) {
+                    let gamesName = allGames.filter((game) => game.game_name.toLowerCase().includes(name.toLowerCase()))
+                    if (gamesName.length) {
+                        res.status(200).json(gamesName)
+                    } else throw Error(`Resultados no encontrados`);
+                } else {
+                    res.status(200).json(allGames)
                 }
             }
         } catch (error) {

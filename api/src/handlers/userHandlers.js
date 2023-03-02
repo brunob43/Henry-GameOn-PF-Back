@@ -4,13 +4,11 @@ const {getAllUsers, getAllDeletedUsers} = require("../controllers/userController
 
 const getUsersHandler = async(req,res) => {
     const { name } = req.query;
-    const { admin } = req.query;
 
     const allUsers = await getAllUsers()
     const allDeletedUsers = await getAllDeletedUsers()
 
     try {
-        if (admin) {
             if (name) {
                 let usersName = allDeletedUsers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
                 if (usersName.length) {
@@ -19,16 +17,6 @@ const getUsersHandler = async(req,res) => {
             } else {
                 res.status(200).json(allDeletedUsers)
             }
-        } else {
-            if (name) {
-                let usersName = allUsers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
-                if (usersName.length) {
-                    res.status(200).json(usersName)
-                } else throw Error(`Resultados no encontrados`);
-            } else {
-                res.status(200).json(allUsers)
-            }
-        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
