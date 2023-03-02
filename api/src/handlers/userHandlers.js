@@ -125,7 +125,7 @@ const deleteUsersHandler = async (req,res) =>{
             res.status(200).json(userToDelete)
         } else {
             await User.update({
-                user_deleted: true
+                user_deleted: false
             },{
                 where:{internal_id}
             });
