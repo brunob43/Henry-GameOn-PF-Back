@@ -119,6 +119,7 @@ const deleteUsersHandler = async (req,res) =>{
 
         if (user.length) {
             console.log(user)
+            console.log(user.user_deleted)
             if (!user.user_deleted){
                 User.update({
                     user_deleted: true
