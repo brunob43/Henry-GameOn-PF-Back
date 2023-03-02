@@ -3,12 +3,37 @@ const {User,Game,Doc,Donation} = require("../db")
 const {getAllUsers, getAllDeletedUsers} = require("../controllers/userController.js")
 
 const getUsersHandler = async(req,res) => {
-try {
-    const users = await getAllUsers();
-    res.status(200).json(users)
-} catch (error) {
-    res.status(400).json({error:error.message})
-}
+    const { name } = req.query;
+    const { admin } = req.query;
+
+    const allUsers = await getAllUsers()
+    const allDeletedUsers = await getAllDeletedUsers()
+
+    try {
+        if (admin) {
+            if (name) {
+                let usersName = allDeletedUsers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
+                if (usersName.length) {
+                    res.status(200).json(usersName)
+                } else throw Error(`Resultados no encontrados`);
+            } else {
+                res.status(200).json(allDeletedUsers)
+            }
+        } else {
+            if (name) {
+                let usersName = allusers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
+                if (usersName.length) {
+                    res.status(200).json(usersName)
+                } else throw Error(`Resultados no encontrados`);
+            } else {
+                res.status(200).json(allUsers)
+            }
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+
 }
  
 const getIDUsersHandler = async (req,res) => { 

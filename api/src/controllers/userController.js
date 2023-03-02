@@ -31,7 +31,6 @@ const dbData = async() => {
 const dbAllDeletedData = async() => {
     const data= await User.findAll(
         {
-        where: { user_deleted : true },
         include:[{
             model:Game,
             attributes:["game_name"],
