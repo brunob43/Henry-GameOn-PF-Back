@@ -118,14 +118,19 @@ const deleteUsersHandler = async (req,res) =>{
         const user = await User.findAll({where:{internal_id}})
 
         if (user.length) {
+            console.log(user)
             if (!user.user_deleted){
                 User.update({
                     user_deleted: true
+                },{
+                    where:{internal_id}
                 })
                 res.status(200).send(user) 
             } else {
                 User.update({
                     user_deleted: false
+                },{
+                    where:{internal_id}
                 })
             res.status(200).send(user) 
             }
