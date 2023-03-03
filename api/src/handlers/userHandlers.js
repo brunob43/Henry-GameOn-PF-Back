@@ -3,12 +3,25 @@ const {User,Game,Doc,Donation} = require("../db")
 const {getAllUsers, getAllDeletedUsers} = require("../controllers/userController.js")
 
 const getUsersHandler = async(req,res) => {
-try {
-    const users = await getAllUsers();
-    res.status(200).json(users)
-} catch (error) {
-    res.status(400).json({error:error.message})
-}
+    const { name } = req.query;
+
+    const allUsers = await getAllUsers()
+    const allDeletedUsers = await getAllDeletedUsers()
+
+    try {
+            if (name) {
+                let usersName = allDeletedUsers.filter((user) => user.user_name.toLowerCase().includes(name.toLowerCase()))
+                if (usersName.length) {
+                    res.status(200).json(usersName)
+                } else throw Error(`Resultados no encontrados`);
+            } else {
+                res.status(200).json(allDeletedUsers)
+            }
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+
 }
  
 const getIDUsersHandler = async (req,res) => { 
@@ -100,7 +113,34 @@ const postUsersHandler = async (req,res) => {
 
 const deleteUsersHandler = async (req,res) =>{
     const { internal_id } = req.params;
+    const userToDelete = await User.findAll({where:{internal_id}})
     try {
+        if (userToDelete.length) {
+            if (!userToDelete[0].user_deleted){
+                User.update({
+                    user_deleted: true
+                },{
+                    where:{internal_id}
+                })
+                res.status(200).send(userToDelete) 
+            } else {
+                User.update({
+                    user_deleted: false
+                },{
+                    where:{internal_id}
+                })
+            res.status(200).send(userToDelete) 
+            }
+        } else {
+            throw Error ("El usuario no existe")
+        }
+
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+    
+    
+    /*try {
         await User.update({
             user_deleted: true
         },{
@@ -109,7 +149,7 @@ const deleteUsersHandler = async (req,res) =>{
         res.status(200).send(`El usuario ${internal_id} fue eliminado`)
     } catch (error) {
         res.status(400).json({error:error.message})
-    }
+    }*/
  }
 
 

@@ -5,8 +5,12 @@ const { allGameData, allDeletedGameData } = require("../controllers/gameControll
 
 module.exports = {
     getGameHandler: async (req, res) => {
+        
         const { name } = req.query;
-        const { admin } = req.body;
+        const { admin } = req.query;
+        
+        console.log(req.query)
+
 
         const allGames = await allGameData()
         const allDeletedGames = await allDeletedGameData()
@@ -85,9 +89,9 @@ module.exports = {
         try {
             const { game_id } = req.params;//para obtener info de un catalogo.
             console.log(game_id)
-            const { game_name, game_topic, game_directory, game_difficulty } = req.body;
+            const { game_name, game_topic, game_image, game_difficulty } = req.body;
             await Game.update(
-                { game_name, game_topic, game_directory, game_difficulty },
+                { game_name, game_topic, game_image, game_difficulty },
                 { where: { game_id } }
             );
             res.status(200).send(`Se actualizó el juego ${game_id}`)
@@ -98,15 +102,30 @@ module.exports = {
 
     deleteGameHandler: async (req, res) => {
         const { game_id } = req.params;
-        try {
-            await Game.update({
-                game_deleted: true
-            }, {
-                where: { game_id }
-            });
-            res.status(200).send(`El juego ${game_id} fue eliminado`)
-        } catch (error) {
-            res.status(400).json({ error: error.message })
+        const gameToDelete = await Game.findAll({where:{game_id}})
+    try {
+        if (gameToDelete.length) {
+            if (!gameToDelete[0].game_deleted){
+                Game.update({
+                    game_deleted: true
+                },{
+                    where:{game_id}
+                })
+                res.status(200).send(gameToDelete) 
+            } else {
+                Game.update({
+                    game_deleted: false
+                },{
+                    where:{game_id}
+                })
+            res.status(200).send(gameToDelete) 
+            }
+        } else {
+            throw Error ("El Juego no existe")
         }
+
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
     },
 }
