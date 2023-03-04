@@ -50,7 +50,9 @@ const updateUsersHandler = async(req,res) => {
           donation_id,
           donation_name,
           donation_info,
-          donation_quantity
+          donation_quantity,
+          like_doc,
+          like_game
         } = req.body;
         await User.update(
         {
@@ -66,14 +68,23 @@ const updateUsersHandler = async(req,res) => {
       if(game_id!==0){
         const user = await User.findByPk(internal_id);
         const game = await Game.findByPk(game_id);
-        await user.addGame(game)
+        if(like_game) {
+            await user.addGame(game)
+        }else{
+            await user.removeGame(game)
+        };
 
       }
       if(doc_id!==0){
         const user = await User.findByPk(internal_id);
         const doc = await Doc.findByPk(doc_id);
-        await user.addDoc(doc)
-      }
+        if(like_doc){
+            await user.addDoc(doc)
+        }else{
+            await user.removeDoc(doc)
+        }
+      };
+
       if([donation_name,donation_info,donation_quantity].every(Boolean)) {
           const donation = await Donation.create({
             donation_name,
