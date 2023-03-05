@@ -11,13 +11,15 @@ const profileHandler = async (req,res) => {
         const loadedUser = await User.findAll ({ where: {user_email},
             include:[{
                 model:Game,
-                attributes:["game_name", "game_id"],
+                attributes:["game_id"],
+                attributes:["game_name"],
                 through:{
                     attributes:[]
                 }
             },{
                 model:Doc,
-                attributes:["doc_name", "doc_id"],
+                attributes:["doc_id"],
+                attributes:["doc_name"],
                 through:{
                     attributes:[]
                 }
