@@ -1,3 +1,6 @@
+require('dotenv').config();
+const {ACCESS_TOKEN} = process.env
+
 class PaymentController {
     constructor(subscriptionService) {
       this.subscriptionService = subscriptionService;
