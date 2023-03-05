@@ -6,13 +6,13 @@ const dbData = async() => {
         where: { user_deleted : false },
         include:[{
             model:Game,
-            attributes:["game_id"],
+            attributes:["game_id", "game_id"],
             through:{
                 attributes:[]
             }
         },{
             model:Doc,
-            attributes:["doc_id"],
+            attributes:["doc_id", "doc_name"],
             through:{
                 attributes:[]
             }
@@ -33,13 +33,13 @@ const dbAllDeletedData = async() => {
         {
         include:[{
             model:Game,
-            attributes:["game_name"],
+            attributes:["game_id", "game_id"],
             through:{
                 attributes:[]
             }
         },{
             model:Doc,
-            attributes:["doc_name"],
+            attributes:["doc_id", "doc_name"],
             through:{
                 attributes:[]
             }
