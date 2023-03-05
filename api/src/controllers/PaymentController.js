@@ -7,6 +7,8 @@ class PaymentController {
       try {
         const payment = await this.subscriptionService.createPayment();
         console.log(payment.id)
+        const paymentDetail = axios.get(`https://api.mercadopago.com/v1/payments/${payment.id}`, {headers: {Authorization : ACCESS_TOKEN }})
+        console.log(paymentDetail)
         return res.json(payment);
       } catch (error) {
         console.log(error);
