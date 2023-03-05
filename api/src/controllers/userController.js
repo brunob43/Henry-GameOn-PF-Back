@@ -33,13 +33,13 @@ const dbAllDeletedData = async() => {
         {
         include:[{
             model:Game,
-            attributes:["game_id", "game_id"],
+            attributes:["game_id"],
             through:{
                 attributes:[]
             }
         },{
             model:Doc,
-            attributes:["doc_id", "doc_name"],
+            attributes:["doc_id"],
             through:{
                 attributes:[]
             }
