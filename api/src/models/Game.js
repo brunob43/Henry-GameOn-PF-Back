@@ -29,7 +29,11 @@ module.exports = (sequelize) => {
         game_deleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        }
+        },
+        game_likes:{
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
        },
        {
         timestamps: false

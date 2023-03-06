@@ -139,5 +139,30 @@ const deleteDocHandler = async (req,res) =>{
     }
  }
 
+    const docLikesHandler = async(req,res) => {
+        const { doc_id } = req.params;
+        const {like_doc} = req.query
+        try {
+            const doc = await Doc.findOne({
+                where:{doc_id}});
+            if(like_doc){
+                let newLikes =doc.doc_likes + 1
+                await Doc.update({
+                    doc_likes: newLikes
+                });
+                res.status(200).send(`El documento ${doc_id} recibió un like`)
+            }else{
+                let newLikes =doc.doc_likes - 1
+                await Doc.update({
+                    doc_likes: newLikes
+                });
+                res.status(200).send(`El documento ${doc_id} disminuyó un like`)
+            }
+            
+        } catch (error) {
+            res.status(400).json({error:error.message})
+        }
+     }
 
-module.exports = {getDocHandler, getIdDocHandler, updateDocHandler, postDocHandler, deleteDocHandler, docViewsHandler}
+
+module.exports = {getDocHandler, getIdDocHandler, updateDocHandler, postDocHandler, deleteDocHandler, docViewsHandler,docLikesHandler}

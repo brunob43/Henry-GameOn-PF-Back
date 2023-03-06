@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const docRouter = Router()
-const {getDocHandler, getIdDocHandler, postDocHandler, updateDocHandler, deleteDocHandler, docViewsHandler} = require("../handlers/docHandlers")
+const {getDocHandler, getIdDocHandler, postDocHandler, updateDocHandler, deleteDocHandler, docViewsHandler, docLikesHandler} = require("../handlers/docHandlers")
 
 docRouter.get("/", getDocHandler)
 
@@ -14,6 +14,8 @@ docRouter.post("/", postDocHandler)
 docRouter.delete("/:doc_id", deleteDocHandler)   //Borrado lógico solo borra el admin
 
 docRouter.put ("/view/:doc_id", docViewsHandler)
+
+docRouter.put ("/like/:doc_id", docLikesHandler)
 
 module.exports = docRouter
 

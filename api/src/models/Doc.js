@@ -33,7 +33,11 @@ module.exports = (sequelize) => {
         doc_deleted:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        }
+        },
+        doc_likes:{
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
        },
        
        {

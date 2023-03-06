@@ -103,11 +103,11 @@ module.exports = {
     deleteGameHandler: async (req, res) => {
         const { game_id } = req.params;
         const gameToDelete = await Game.findAll({where:{game_id}})
-    try {
+        try {
         if (gameToDelete.length) {
             if (!gameToDelete[0].game_deleted){
                 Game.update({
-                    game_deleted: true
+                game_deleted: true
                 },{
                     where:{game_id}
                 })
@@ -119,13 +119,38 @@ module.exports = {
                     where:{game_id}
                 })
             res.status(200).send(gameToDelete) 
-            }
+        }
         } else {
             throw Error ("El Juego no existe")
         }
-
-    } catch (error) {
-        res.status(400).json({error:error.message})
-    }
+        }catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    },
+    
+    gameLikesHandler : async(req,res) => {
+        const { game_id } = req.params;
+        const {like_game} =req.query
+        try {
+            const game = await Game.findOne({
+                where:{game_id}});
+            if(like_game){
+                let newLikes =game.game_likes + 1
+                await Game.update({
+                    game_likes: newLikes
+                });
+                res.status(200).send(`El juego ${game_id} recibió un like`)
+            }else{
+                let newLikes =game.game_likes - 1
+                await Game.update({
+                    game_likes: newLikes
+                });
+                res.status(200).send(`El juego ${game_id} disminuyó un like`)
+            }
+            
+            
+        } catch (error) {
+            res.status(400).json({error:error.message})
+        }
     },
 }

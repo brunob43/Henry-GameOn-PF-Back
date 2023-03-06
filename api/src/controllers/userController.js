@@ -6,13 +6,13 @@ const dbData = async() => {
         where: { user_deleted : false },
         include:[{
             model:Game,
-            attributes:["game_name"],
+            attributes:["game_id","game_name"],
             through:{
                 attributes:[]
             }
         },{
             model:Doc,
-            attributes:["doc_name"],
+            attributes:["doc_id","doc_name"],
             through:{
                 attributes:[]
             }
