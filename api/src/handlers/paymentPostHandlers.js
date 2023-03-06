@@ -5,7 +5,7 @@ const {ACCESS_TOKEN} = process.env
 const paymentPostHandler = async (req, res) => {
     const { id, data } = req.body
 
-    const dataID = data.id
+    const dataID = data.data
 
     console.log(dataID)
 
