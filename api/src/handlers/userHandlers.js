@@ -43,13 +43,11 @@ const updateUsersHandler = async(req,res) => {
           user_email,
           user_image,
           user_type,
+          user_payment_id,
           user_state,
           user_password,
           game_id,
           doc_id,
-          donation_name,
-          donation_info,
-          donation_quantity,
           like_doc,
           like_game
         } = req.body;
@@ -83,15 +81,25 @@ const updateUsersHandler = async(req,res) => {
             await user.removeDoc(doc)
         }
       };
+      if(user_payment_id) {
+        const user = await User.findByPk(internal_id)
+        console.log("-------------------------------------------USER HANDLERS------------------------------------------------------------")
 
-      if([donation_name,donation_info,donation_quantity].every(Boolean)) {
-          const donation = await Donation.create({
-            donation_name,
-            donation_info,
-            donation_quantity
-          });
-          const user = await User.findByPk(internal_id);
-          await user.addDonation(donation);
+        console.log(user)
+
+        
+
+        const newDonation = await Donation.create({
+            donation_id_link : user_payment_id
+        })
+
+        console.log(newDonation)
+        
+
+        await user.addDonation(newDonation)
+
+        console.log(user)
+        console.log("--------------------------------------------USER HANDLERS-----------------------------------------------------------")
 
       }
 

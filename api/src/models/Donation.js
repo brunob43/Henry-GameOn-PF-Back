@@ -7,19 +7,26 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            allowNull: false,
+            allowNull:false
         },
         donation_name:{
             type:DataTypes.STRING,
-            allowNull: false,
+        },
+        donation_id_link :{
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        donation_data_id:{
+            type: DataTypes.STRING,
         },    
         donation_info:{
             type:DataTypes.STRING,
-            allowNull: false,
         } ,
+        donation_status:{
+            type:DataTypes.STRING,
+        },
         donation_quantity:{
             type: DataTypes.INTEGER, 
-            allowNull: false,
         }
      },
     {

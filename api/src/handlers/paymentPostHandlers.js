@@ -21,12 +21,26 @@ const paymentPostHandler = async (req, res) => {
     try {
 
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)
-        console.log("---------------------------------------------------------------------------------------------------------------------INICIO--------------------------------------------------")
-        console.log(paymentDetail)
-        console.log("----------------------------------------------------------------------------------------------------------------------FIN--------------------------------------------------")
 
+        const {description, collector_id, status_detail, status, transaction_amount} = paymentDetail
+
+        console.log(description, collector_id, status_detail, status, transaction_amount)
         
+        const newDonation = await Donation.update(
+            
+            {
+            donation_name : description,
+            donation_data_id : dataID,
+            donation_info : status_detail,
+            donation_status : status,
+            donation_quantity : transaction_amount
+            },
+            {where : { donation_id_link : collector_id}}
+        )
 
+        console.log("-------------------------------------------------------POST PAYMENT--------------------------------------------------------------INICIO--------------------------------------------------")
+        console.log(newDonation, "newDonation")
+        console.log("--------------------------------------------------------POST PAYMENT--------------------------------------------------------------FIN--------------------------------------------------")
 
         try {
             if(![ id ].every(Boolean)) return res.status(404).send("Falta enviar datos");
