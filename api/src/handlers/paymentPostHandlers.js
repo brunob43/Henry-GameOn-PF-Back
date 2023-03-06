@@ -1,6 +1,8 @@
 require('dotenv').config();
 const axios = require("axios");
 const {ACCESS_TOKEN} = process.env
+const {updateUsersHandler} = require("./userHandlers")
+const {User, Donation} = require("../db.js")
 
 const paymentPostHandler = async (req, res) => {
     const { id, data } = req.body
@@ -14,11 +16,16 @@ const paymentPostHandler = async (req, res) => {
     const dataID = data.id
 
 
-    console.log(dataID)
+    console.log(dataID, "dataID")
 
     try {
+
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)
-        console.log(paymentDetail)
+
+        console.log("inicio", paymentDetail, "fin")
+
+        
+
 
         try {
             if(![ id ].every(Boolean)) return res.status(404).send("Falta enviar datos");
