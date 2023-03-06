@@ -1,6 +1,4 @@
-/*require('dotenv').config();
-const axios = require("axios");
-const {ACCESS_TOKEN} = process.env*/
+
 
 class PaymentController {
   
@@ -11,8 +9,6 @@ class PaymentController {
       try {
         const payment = await this.subscriptionService.createPayment();
         console.log(payment)
-        /*const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${payment.data.id}`, {headers: {Authorization : ACCESS_TOKEN }})
-        console.log(paymentDetail)*/
         return res.json(payment);
       } catch (error) {
         console.log(error);
