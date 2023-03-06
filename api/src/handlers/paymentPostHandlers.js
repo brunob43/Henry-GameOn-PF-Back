@@ -21,8 +21,9 @@ const paymentPostHandler = async (req, res) => {
     try {
 
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)
-
-        console.log("inicio", paymentDetail, "fin")
+        console.log("---------------------------------------------------------------------------------------------------------------------INICIO--------------------------------------------------")
+        console.log(paymentDetail)
+        console.log("----------------------------------------------------------------------------------------------------------------------FIN--------------------------------------------------")
 
         
 
