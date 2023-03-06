@@ -25,7 +25,7 @@ const paymentPostHandler = async (req, res) => {
             const newPayment= await 
             
             console.log(req.body);
-            res.status(200).json(paymentDetail);
+            res.status(200).json(newPayment, paymentDetail);
     
         }   catch (error) {
             res.status(400).json({error: error.message})
