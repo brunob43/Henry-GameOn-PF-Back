@@ -5,9 +5,9 @@ const {ACCESS_TOKEN} = process.env
 const paymentPostHandler = async (req, res) => {
     const { id, data } = req.body
 
-    const dataID = data
+    const dataID = data.id
 
-    console.log(dataID.id)
+    console.log(dataID)
 
     try {
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`,{ headers: {'Authorization': ACCESS_TOKEN } })
