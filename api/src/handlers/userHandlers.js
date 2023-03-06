@@ -47,7 +47,6 @@ const updateUsersHandler = async(req,res) => {
           user_password,
           game_id,
           doc_id,
-          donation_id,
           donation_name,
           donation_info,
           donation_quantity,

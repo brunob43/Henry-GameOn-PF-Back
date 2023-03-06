@@ -1,5 +1,6 @@
 const { Router } = require("express")
 const PaymentController = require("../controllers/PaymentController");
+const { docLikesHandler } = require("../handlers/docHandlers");
 const {Payment20Handler, Payment50Handler, Payment100Handler} = require("../handlers/PaymentHandlers");
 const paymentPostHandlers = require("../handlers/paymentPostHandlers")
 
