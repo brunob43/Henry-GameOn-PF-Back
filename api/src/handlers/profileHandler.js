@@ -11,13 +11,13 @@ const profileHandler = async (req,res) => {
         const loadedUser = await User.findAll ({ where: {user_email},
             include:[{
                 model:Game,
-                attributes:["game_name"],
+                attributes:["game_id", "game_name"],
                 through:{
                     attributes:[]
                 }
             },{
                 model:Doc,
-                attributes:["doc_name"],
+                attributes:["doc_id", "doc_name"],
                 through:{
                     attributes:[]
                 }
@@ -27,7 +27,6 @@ const profileHandler = async (req,res) => {
                 attributes:["donation_id"]
             }
         ]  });
-        console.log(loadedUser, "usuarioCargado")
         if (loadedUser.length>0) {
             res.status(200).json(loadedUser[0]);
 
