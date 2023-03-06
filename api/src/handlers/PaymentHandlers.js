@@ -4,7 +4,7 @@ class Payment20Handler {
   constructor(donation_id){
     donation_id = this.donation_id
   }
-  async createPayment() {
+  async createPayment(donation_id) {
     const url = "https://api.mercadopago.com/checkout/preferences";
 
     const body = {
