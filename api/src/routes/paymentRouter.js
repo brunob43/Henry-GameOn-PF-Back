@@ -4,15 +4,15 @@ const { docLikesHandler } = require("../handlers/docHandlers");
 const {Payment20Handler, Payment50Handler, Payment100Handler} = require("../handlers/PaymentHandlers");
 const paymentPostHandlers = require("../handlers/paymentPostHandlers")
 
-const Payment20Instance = new PaymentController(new Payment20Handler());
+//const Payment20Instance = new PaymentController(new Payment20Handler());
 const Payment50Instance = new PaymentController(new Payment50Handler());
 const Payment100Instance = new PaymentController(new Payment100Handler());
 
 const paymentRouter = Router()
 
 paymentRouter.get("/20", function (req, res, next) {
-    const donation = req.body
-    let Payment20 = new PaymentController(new Payment20Handler(donation))
+    const { donation_id } = req.body
+    let Payment20 = new PaymentController(new Payment20Handler(donation_id))
     Payment20.getPaymentLink(req, res);
 
   });
