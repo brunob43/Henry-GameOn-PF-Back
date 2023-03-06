@@ -11,7 +11,10 @@ const Payment100Instance = new PaymentController(new Payment100Handler());
 const paymentRouter = Router()
 
 paymentRouter.get("/20", function (req, res, next) {
-    Payment20Instance.getPaymentLink(req, res);
+    const donation = req.body
+    let Payment20 = new PaymentController(new Payment20Handler(donation))
+    Payment20.getPaymentLink(req, res);
+
   });
 
   paymentRouter.get("/50", function (req, res, next) {
