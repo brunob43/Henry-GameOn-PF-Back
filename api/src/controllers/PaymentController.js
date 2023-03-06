@@ -1,5 +1,7 @@
 require('dotenv').config();
+import axios from 'axios';
 const {ACCESS_TOKEN} = process.env
+
 
 class PaymentController {
     constructor(subscriptionService) {
