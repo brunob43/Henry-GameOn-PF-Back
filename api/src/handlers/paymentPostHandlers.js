@@ -7,11 +7,12 @@ const paymentPostHandler = async (req, res) => {
 
     const header = { 
         headers: {
-            'Authorization': ACCESS_TOKEN 
+            'Authorization': `Bearer ${ACCESS_TOKEN}`
         } 
     }
 
     const dataID = data.id
+
 
     console.log(dataID)
 
