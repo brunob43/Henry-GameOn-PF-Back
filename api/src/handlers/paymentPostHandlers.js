@@ -18,14 +18,14 @@ const paymentPostHandler = async (req, res) => {
 
     try {
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)
-        //console.log(paymentDetail)
+        console.log(paymentDetail)
 
         try {
             if(![ id ].every(Boolean)) return res.status(404).send("Falta enviar datos");
             const newPayment= await 
             
-            //console.log(req.body);
-            res.status(200).json(paymentDetail);
+            console.log(req.body);
+            res.status(200).json(newPayment);
     
         }   catch (error) {
             res.status(400).json({error: error.message})
