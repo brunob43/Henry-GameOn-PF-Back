@@ -5,9 +5,9 @@ const {ACCESS_TOKEN} = process.env
 const paymentPostHandler = async (req, res) => {
     const { id, data } = req.body
 
-    try {
+    /*try {
         const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${data.id}`, {headers: {Authorization : ACCESS_TOKEN }})
-        console.log(paymentDetail)
+        console.log(paymentDetail)*/
 
         try {
             if(![ id ].every(Boolean)) return res.status(404).send("Falta enviar datos");
@@ -22,11 +22,11 @@ const paymentPostHandler = async (req, res) => {
     
         }
 
-    } catch (error) {
+    /*} catch (error) {
         res.status(400).json({error: error.message})
         console.log(error.message)
     
-    }
+    }*/
 
 }
 
