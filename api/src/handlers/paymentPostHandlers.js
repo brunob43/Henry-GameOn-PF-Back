@@ -10,7 +10,7 @@ const paymentPostHandler = async (req, res) => {
     console.log(dataID.id)
 
     try {
-        const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID.id}`,{ headers: {'Authorization': ACCESS_TOKEN } })
+        const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`,{ headers: {'Authorization': ACCESS_TOKEN } })
         console.log(paymentDetail)
 
         try {
