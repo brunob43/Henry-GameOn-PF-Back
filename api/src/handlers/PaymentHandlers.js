@@ -2,7 +2,7 @@ const axios = require("axios");
 
 class Payment20Handler {
   constructor(donation_id){
-    donation_id = this.donation_id
+    this.donation_id = donation_id
   }
   async createPayment(donation_id) {
     const url = "https://api.mercadopago.com/checkout/preferences";
