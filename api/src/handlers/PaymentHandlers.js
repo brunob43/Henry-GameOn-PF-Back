@@ -40,6 +40,9 @@ class Payment20Handler {
 }
 
 class Payment50Handler {
+  constructor(donation_id){
+    this.donation_id = donation_id
+  }
   async createPayment() {
     const url = "https://api.mercadopago.com/checkout/preferences";
 
@@ -50,6 +53,7 @@ class Payment50Handler {
           title: "manon $50",
           description: "pago de prueba donacion de $50",
           picture_url: "http://www.myapp.com/myimage.jpg",
+          id: this.donation_id,
           category_id: "category123",
           quantity: 1,
           unit_price: 50
@@ -75,6 +79,9 @@ class Payment50Handler {
 }
 
 class Payment100Handler {
+  constructor(donation_id){
+    this.donation_id = donation_id
+  }
   async createPayment() {
     const url = "https://api.mercadopago.com/checkout/preferences";
 
@@ -85,6 +92,7 @@ class Payment100Handler {
           title: "euforia $100",
           description: "pago de prueba donacion de $100",
           picture_url: "http://www.myapp.com/myimage.jpg",
+          id: this.donation_id,
           category_id: "category123",
           quantity: 1,
           unit_price: 100
