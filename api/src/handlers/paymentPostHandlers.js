@@ -20,12 +20,12 @@ const paymentPostHandler = async (req, res) => {
 
     try {
 
-        const paymentDetail = await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)
+        const paymentDetail = (await axios.get(`https://api.mercadopago.com/v1/payments/${dataID}`, header)).data
         console.log("-----------------------initPayment-----------------------")
         console.log(paymentDetail)
         console.log("-----------------------endPayment-----------------------")
-        // console.log(paymentDetail.status_detail, paymentDetail.status,
-        //     paymentDetail.additional_info.items[0].id, "paymentDetail")
+        console.log(paymentDetail.status_detail, paymentDetail.status,
+            paymentDetail.additional_info.items[0].id, "paymentDetail")
         
         const newDonation = await Donation.update(
             {
