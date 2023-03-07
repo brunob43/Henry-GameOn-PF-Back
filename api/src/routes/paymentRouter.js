@@ -12,7 +12,7 @@ const paymentRouter = Router()
 
 paymentRouter.get("/20", function (req, res, next) {
     const { donation_id } = req.body
-    console.log(donation_id)
+    console.log(donation_id, "donationId en ruta payment")
     let Payment20 = new PaymentController(new Payment20Handler(donation_id))
     Payment20.getPaymentLink(req, res);
 
