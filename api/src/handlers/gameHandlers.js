@@ -59,6 +59,7 @@ module.exports = {
     },
     postGameHandler: async (req, res) => {
         try {
+            console.log(req.body)
             const { game_name, game_topic, game_image, game_difficulty } = req.body
             if (![game_name, game_topic, game_image, game_difficulty].every(Boolean)) return res.status(404).send("Falta enviar datos");
             const newGame = await Game.create({ game_name, game_topic, game_image, game_difficulty });
