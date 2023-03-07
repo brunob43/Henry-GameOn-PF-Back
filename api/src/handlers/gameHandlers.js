@@ -138,13 +138,13 @@ module.exports = {
                 console.log(game)
             if(like_game){
                 let newLikes = game.game_likes + 1
-                await Game.update({
+                await game.update({
                     game_likes: newLikes
                 });
                 res.status(200).send(`El juego ${game_id} recibió un like`)
             }else{
                 let newLikes =game.game_likes - 1
-                await Game.update({
+                await game.update({
                     game_likes: newLikes
                 });
                 res.status(200).send(`El juego ${game_id} disminuyó un like`)
