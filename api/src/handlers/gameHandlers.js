@@ -131,11 +131,13 @@ module.exports = {
     gameLikesHandler : async(req,res) => {
         const { game_id } = req.params;
         const {like_game} =req.query
+        console.log(game_id, "gameId", like_game, "likeGame")
         try {
             const game = await Game.findOne({
                 where:{game_id}});
+                console.log(game)
             if(like_game){
-                let newLikes =game.game_likes + 1
+                let newLikes = game.game_likes + 1
                 await Game.update({
                     game_likes: newLikes
                 });
