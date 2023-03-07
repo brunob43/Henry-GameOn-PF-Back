@@ -42,12 +42,40 @@ const profileHandler = async (req,res) => {
             }
 
             
-
+            
         };
 
     } catch (error) {
         res.status(400).json({error:error.message});
     };
 };
+const profileEditHandler=async(req,res)=>{
+    const{internal_id}=req.query
+    try {
+        const user = await User.findAll ({ where: {internal_id},
+          include:[{
+              model:Game,
+              attributes:["game_id", "game_name"],
+              through:{
+                  attributes:[]
+              }
+          },{
+              model:Doc,
+              attributes:["doc_id", "doc_name"],
+              through:{
+                  attributes:[]
+              }
+          }
+          ,{
+              model:Donation,
+              attributes:["donation_id"]
+          }
+      ]  });
+          res.status(200).json(user[0]);
+        
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    }
 
-module.exports = { profileHandler };
+}
+module.exports = { profileHandler, profileEditHandler };
