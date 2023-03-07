@@ -64,18 +64,22 @@ const updateUsersHandler = async(req,res) => {
         const game = await Game.findByPk(game_id);
         if(like_game) {
             await user.addGame(game)
+            return res.status(200).json(user)
         }else{
             await user.removeGame(game)
+            return res.status(200).json(user)
         };
-
+        
       }
       if(doc_id!==0){
         const user = await User.findByPk(internal_id);
         const doc = await Doc.findByPk(doc_id);
         if(like_doc){
             await user.addDoc(doc)
+            return res.status(200).json(user)
         }else{
             await user.removeDoc(doc)
+            return res.status(200).json(user)
         }
       };
      
