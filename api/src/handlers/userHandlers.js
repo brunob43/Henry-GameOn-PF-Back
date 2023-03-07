@@ -39,6 +39,7 @@ const updateUsersHandler = async(req,res) => {
     try {
         const { internal_id } = req.params;//para obtener info de un catalogo.
         const {like_game , like_doc, game_id,doc_id}=req.query
+        console.log(req.body)
         const {
           user_name,
           user_email,
