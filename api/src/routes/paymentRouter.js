@@ -11,7 +11,7 @@ const paymentPostHandlers = require("../handlers/paymentPostHandlers")
 const paymentRouter = Router()
 
 paymentRouter.get("/20", function (req, res, next) {
-    const { donation_id } = req.body
+    const { donation_id } = req.query
     console.log(donation_id, "donationId en ruta payment")
     let Payment20 = new PaymentController(new Payment20Handler(donation_id))
     Payment20.getPaymentLink(req, res);
