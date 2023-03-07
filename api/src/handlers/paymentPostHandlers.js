@@ -24,8 +24,8 @@ const paymentPostHandler = async (req, res) => {
         console.log("-----------------------initPayment-----------------------")
         console.log(paymentDetail)
         console.log("-----------------------endPayment-----------------------")
-        console.log(paymentDetail.status_detail, paymentDetail.status,
-            paymentDetail.additional_info.items[0].id, "paymentDetail")
+        console.log(paymentDetail.additional_info ,"paymentDetail")
+        console.log(paymentDetail.additional_info.items ," iteeems    paymentDetail")
         
         const newDonation = await Donation.update(
             {
