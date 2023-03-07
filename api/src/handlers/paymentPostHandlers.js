@@ -27,16 +27,16 @@ const paymentPostHandler = async (req, res) => {
         // console.log(paymentDetail.status_detail, paymentDetail.status,
         //     paymentDetail.additional_info.items[0].id, "paymentDetail")
         
-        // const newDonation = await Donation.update(
-        //     {
-        //     donation_data_id : dataID,
-        //     donation_info : paymentDetail.status_detail,
-        //     donation_status : paymentDetail.status,
-        //     },
-        //     {where : { donation_id : paymentDetail.additional_info.items[0].id}}
-        // )
+        const newDonation = await Donation.update(
+            {
+            donation_data_id : dataID,
+            donation_info : paymentDetail.status_detail,
+            donation_status : paymentDetail.status,
+            },
+            {where : { donation_id : paymentDetail.additional_info.items[0].id}}
+        )
         console.log("-------------------------------------------------------POST PAYMENT--------------------------------------------------------------INICIO--------------------------------------------------")
-        // console.log(newDonation, "newDonation")
+        console.log(newDonation, "newDonation")
     console.log("--------------------------------------------------------POST PAYMENT--------------------------------------------------------------FIN--------------------------------------------------")
 
         try {
