@@ -38,6 +38,7 @@ const getIDUsersHandler = async (req,res) => {
 const updateUsersHandler = async(req,res) => {
     try {
         const { internal_id } = req.params;//para obtener info de un catalogo.
+        const {like_game , like_doc, game_id,doc_id}=req.query
         const {
           user_name,
           user_email,
@@ -46,10 +47,6 @@ const updateUsersHandler = async(req,res) => {
           user_payment_id,
           user_state,
           user_password,
-          game_id,
-          doc_id,
-          like_doc,
-          like_game
         } = req.body;
         await User.update(
         {
