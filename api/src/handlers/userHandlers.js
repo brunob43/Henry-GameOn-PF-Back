@@ -29,18 +29,18 @@ const getIDUsersHandler = async (req,res) => {
     try {   
         const user = await User.findOne({
             where:{internal_id},include:[{
-                model:Game,
-                attributes:["game_id","game_name"],
-                through:{
-                    attributes:[]
-                }
-            },{
-                model:Doc,
-                attributes:["doc_id","doc_name"],
-                through:{
-                    attributes:[]
-                }
-            }]});
+            model:Game,
+            attributes:["game_id","game_name"],
+            through:{
+                attributes:[]
+            }
+        },{
+            model:Doc,
+            attributes:["doc_id","doc_name"],
+            through:{
+                attributes:[]
+            }
+        }]});
         res.status(200).json(user)
     } catch (error) {
         res.status(400).send(`El id  ${id} no corresponde a un Usuario existente`)
@@ -79,7 +79,7 @@ const updateUsersHandler = async(req,res) => {
         },
         { where: { internal_id } }
       );
-      if(game_id!==0){
+      if(game_id!=0){
         if(like_game) {
             await user.addGame(game)
             console.log(user)
@@ -91,13 +91,13 @@ const updateUsersHandler = async(req,res) => {
         };
         
       }
-      if(doc_id){
+      if(doc_id!=0){
         if(like_doc){
-            await doc.addUser(user)
-            return res.status(200).json(user, "")
+            await user.addDoc(doc)
+            return res.status(200).json("doc agregado")
         }else{
-            await doc.removeUser(user)
-            return res.status(200).json(user)
+            await user.removeDoc(doc)
+            return res.status(200).json("doc eliminado")
         }
       };
      
