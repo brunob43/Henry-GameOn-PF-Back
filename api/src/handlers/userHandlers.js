@@ -91,7 +91,6 @@ const updateUsersHandler = async(req,res) => {
         };
         
       }
-      if(doc_id!=0){
         if(like_doc){
             await user.addDoc(doc)
             return res.status(200).json("doc agregado")
@@ -99,7 +98,7 @@ const updateUsersHandler = async(req,res) => {
             await user.removeDoc(doc)
             return res.status(200).json("doc eliminado")
         }
-      };
+      ;
      
 
       res.status(200).send(`Se actualizó el usuario ${internal_id}`)
