@@ -37,16 +37,30 @@ const postMessage = async (req,res) => {
   }
 
   const deleteMessage = async (req,res) =>{
-    const { message_id } = req.params;
-    try {
-        await Message.update({
-            message_answered: true
-        },{
-            where:{message_id}
-        });
-        res.status(200).send(`El mensaje ${message_id} fue respondido`)
-    } catch (error) {
-        res.status(400).json({error:error.message})
+        const { message_id } = req.params;
+        const messageToAnswer = await Game.findAll({where:{message_id}})
+        try {
+        if (messageToAnswer.length) {
+            if (!messageToAnswer[0].message_answered){
+                Message.update({
+                message_answered: true
+                },{
+                    where:{message_id}
+                })
+                res.status(200).send(messageToAnswer) 
+            } else {
+                Message.update({
+                    message_answered: false
+                },{
+                    where:{message_id}
+                })
+            res.status(200).send(messageToAnswer) 
+        }
+        } else {
+            throw Error ("El Mensaje no existe")
+        }
+        }catch (error) {
+            res.status(400).json({ error: error.message })
+        }
     }
- }
  module.exports = {getMessages, getIdMessage, postMessage,deleteMessage}
