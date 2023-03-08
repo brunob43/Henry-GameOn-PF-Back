@@ -52,8 +52,8 @@ class Payment50Handler {
         {
           title: "manon $50",
           description: "pago de prueba donacion de $50",
-          picture_url: "http://www.myapp.com/myimage.jpg",
           id: this.donation_id,
+          picture_url: "http://www.myapp.com/myimage.jpg",
           category_id: "category123",
           quantity: 1,
           unit_price: 50
