@@ -1,17 +1,8 @@
 const { Message } = require("../db.js")
 
 const getAllMessages = async() => {
-    const allMessages = await Message.findAll({
-        where: { message_answered : false },
-    })
+    const allMessages = await Message.findAll()
     return allMessages
 }
 
-const getAllAnsweredMessages = async() => {
-    const allMessages = await Message.findAll({
-        where: { message_answered : true },
-    })
-    return allMessages
-} 
-
-module.exports = {getAllMessages, getAllAnsweredMessages}
+module.exports = {getAllMessages}
