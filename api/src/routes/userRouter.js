@@ -6,7 +6,7 @@ const userRouter = Router()
 
 userRouter.get("/", /*checkAuth, checkRoleAuth(['admin']),*/ getUsersHandler)
 
-userRouter.get("/:id", checkOrigin ,getIDUsersHandler)
+userRouter.get("/search/:internal_id", getIDUsersHandler)
 
 userRouter.put("/:internal_id",updateUsersHandler)
 
