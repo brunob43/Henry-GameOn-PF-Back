@@ -22,8 +22,8 @@ class Payment20Handler {
       ],
       back_urls: {
         failure: "https://henry-pf-front.vercel.app/donation",
-        pending: "https://henry-pf-front.vercel.app/donation",
-        success: "https://henry-pf-front.vercel.app/donation"
+        pending: "https://henry-pf-front.vercel.app/thanks",
+        success: "https://henry-pf-front.vercel.app/thanks"
       },
     // notification_url:"http://localhost:3001/payment/donations" Comenzar luego de el Deploy en donationHandler y paymentRoute
     };
@@ -61,8 +61,8 @@ class Payment50Handler {
       ],
       back_urls: {
         failure: "https://henry-pf-front.vercel.app/donation",
-        pending: "https://henry-pf-front.vercel.app/donation",
-        success: "https://henry-pf-front.vercel.app/donation"
+        pending: "https://henry-pf-front.vercel.app/thanks",
+        success: "https://henry-pf-front.vercel.app/thanks"
       },
     // notification_url:"http://localhost:3001/payment/donations" Comenzar luego de el Deploy en donationHandler y paymentRoute
     };
@@ -100,8 +100,8 @@ class Payment100Handler {
       ],
       back_urls: {
         failure: "https://henry-pf-front.vercel.app/donation",
-        pending: "https://henry-pf-front.vercel.app/donation",
-        success: "https://henry-pf-front.vercel.app/donation"
+        pending: "https://henry-pf-front.vercel.app/thanks",
+        success: "https://henry-pf-front.vercel.app/thanks"
       },
     // notification_url:"http://localhost:3001/payment/donations" Comenzar luego de el Deploy en donationHandler y paymentRoute
     };
