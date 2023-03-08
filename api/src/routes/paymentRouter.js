@@ -14,13 +14,13 @@ paymentRouter.get("/20", function (req, res, next) {
   });
 
   paymentRouter.get("/50", function (req, res, next) {
-    const { donation_id } = req.body
+    const { donation_id } = req.query
     let Payment50 = new PaymentController(new Payment50Handler(donation_id))
     Payment50.getPaymentLink(req, res);
   });
 
   paymentRouter.get("/100", function (req, res, next) {
-    const { donation_id } = req.body
+    const { donation_id } = req.query
     let Payment100 = new PaymentController(new Payment100Handler(donation_id))
     Payment100.getPaymentLink(req, res);
   });
