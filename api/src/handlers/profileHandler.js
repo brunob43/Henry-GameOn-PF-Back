@@ -11,21 +11,20 @@ const profileHandler = async (req,res) => {
         const loadedUser = await User.findAll ({ where: {user_email},
             include:[{
                 model:Game,
-                attributes:["game_id", "game_name","game_topic"],
+                attributes:["game_id", "game_name"],
                 through:{
                     attributes:[]
                 }
             },{
                 model:Doc,
-                attributes:["doc_id", "doc_name","doc_topic"],
+                attributes:["doc_id", "doc_name"],
                 through:{
                     attributes:[]
                 }
             }
             ,{
                 model:Donation,
-                where:{donation_status:"approved"},
-                attributes:["donation_id","donation_quantity"]
+                attributes:["donation_id"]
             }
         ]  });
         if (loadedUser.length>0) {
