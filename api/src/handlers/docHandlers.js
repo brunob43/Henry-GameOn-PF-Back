@@ -147,13 +147,13 @@ const deleteDocHandler = async (req,res) =>{
                 where:{doc_id}});
             if(like_doc){
                 let newLikes =doc.doc_likes + 1
-                await Doc.update({
+                await doc.update({
                     doc_likes: newLikes
                 });
                 res.status(200).send(`El documento ${doc_id} recibió un like`)
             }else{
                 let newLikes =doc.doc_likes - 1
-                await Doc.update({
+                await doc.update({
                     doc_likes: newLikes
                 });
                 res.status(200).send(`El documento ${doc_id} disminuyó un like`)

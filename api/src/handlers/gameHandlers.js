@@ -9,9 +9,6 @@ module.exports = {
         const { name } = req.query;
         const { admin } = req.query;
         
-        console.log(req.query)
-
-
         const allGames = await allGameData()
         const allDeletedGames = await allDeletedGameData()
 
