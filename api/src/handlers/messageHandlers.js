@@ -38,7 +38,7 @@ const postMessage = async (req,res) => {
 
   const deleteMessage = async (req,res) =>{
         const { message_id } = req.params;
-        const messageToAnswer = await Game.findAll({where:{message_id}})
+        const messageToAnswer = await Message.findAll({where:{message_id}})
         try {
         if (messageToAnswer.length) {
             if (!messageToAnswer[0].message_answered){
