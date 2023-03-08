@@ -77,9 +77,10 @@ const updateUsersHandler = async(req,res) => {
       if(doc_id!==0){
         const user = await User.findByPk(internal_id);
         const doc = await Doc.findByPk(doc_id);
+        console.log(doc, "doc")
+        console.log(user, "user")
         if(like_doc){
             await user.addDoc(doc)
-            console.log(user,"like doc")
             return res.status(200).json(user)
         }else{
             await user.removeDoc(doc)
