@@ -39,7 +39,8 @@ const updateUsersHandler = async(req,res) => {
     try {
         const { internal_id } = req.params;//para obtener info de un catalogo.
         const {like_game , like_doc, game_id,doc_id}=req.query
-        console.log(req.body)
+        console.log(req.query, "update user query")
+        console.log(req.params, "updateuser params")
         const {
           user_name,
           user_email,
@@ -78,6 +79,7 @@ const updateUsersHandler = async(req,res) => {
         const doc = await Doc.findByPk(doc_id);
         if(like_doc){
             await user.addDoc(doc)
+            console.log(user,"like doc")
             return res.status(200).json(user)
         }else{
             await user.removeDoc(doc)
