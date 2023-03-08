@@ -41,6 +41,13 @@ const updateUsersHandler = async(req,res) => {
         const {like_game , like_doc, game_id,doc_id}=req.query
         console.log(req.query, "update user query")
         console.log(req.params, "updateuser params")
+        const user = await User.findByPk(internal_id);
+        const doc = await Doc.findByPk(doc_id);
+        const game = await Game.findByPk(game_id);
+        console.log(doc, "doc")
+        console.log(user, "user")
+        console.log(game, "game")
+
         const {
           user_name,
           user_email,
@@ -61,8 +68,6 @@ const updateUsersHandler = async(req,res) => {
         { where: { internal_id } }
       );
       if(game_id!==0){
-        const user = await User.findByPk(internal_id);
-        const game = await Game.findByPk(game_id);
         if(like_game) {
             await user.addGame(game)
             console.log(user)
@@ -74,11 +79,7 @@ const updateUsersHandler = async(req,res) => {
         };
         
       }
-      if(doc_id!==0){
-        const user = await User.findByPk(internal_id);
-        const doc = await Doc.findByPk(doc_id);
-        console.log(doc, "doc")
-        console.log(user, "user")
+      if(doc_id){
         if(like_doc){
             await user.addDoc(doc)
             return res.status(200).json(user)
