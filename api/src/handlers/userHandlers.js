@@ -81,10 +81,10 @@ const updateUsersHandler = async(req,res) => {
       }
       if(doc_id){
         if(like_doc){
-            await user.dataValues.addDoc(doc.dataValues)
-            return res.status(200).json(user)
+            await doc.addUser(user)
+            return res.status(200).json(user, "")
         }else{
-            await user.removeDoc(doc)
+            await doc.removeUser(user)
             return res.status(200).json(user)
         }
       };
