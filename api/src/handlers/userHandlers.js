@@ -56,9 +56,6 @@ const updateUsersHandler = async(req,res) => {
         const user = await User.findByPk(internal_id);
         const doc = await Doc.findByPk(doc_id);
         const game = await Game.findByPk(game_id);
-        console.log(doc, "doc")
-        console.log(user, "user")
-        console.log(game, "game")
 
         const {
           user_name,
@@ -68,7 +65,7 @@ const updateUsersHandler = async(req,res) => {
           user_state,
           user_password,
         } = req.body;
-        await User.update(
+        await user.update(
         {
         user_name,
         user_email,
@@ -76,28 +73,29 @@ const updateUsersHandler = async(req,res) => {
         user_type,
         user_state,
         user_password
-        },
-        { where: { internal_id } }
+        }
       );
-      if(game_id!=0){
-        if(like_game) {
-            await user.addGame(game)
-            console.log(user)
-            return res.status(200).json(user)
-        }else{
-            await user.removeGame(game)
-            
-            return res.status(200).json(user)
-        };
-        
+      if(parseInt(game_id)>0){
+          if(like_game==="true") {
+              await user.addGame(game)
+              console.log(user)
+              return res.status(200).send("game adgregado")
+          }else{
+              await user.removeGame(game)
+              
+              return res.status(200).send("game eliminado")
+          };
       }
-        if(like_doc){
+        
+      if(parseInt(doc_id)>0){
+        if(like_doc==="true"){
             await user.addDoc(doc)
-            return res.status(200).json("doc agregado")
+            return res.status(200).send("doc agregado")
         }else{
             await user.removeDoc(doc)
-            return res.status(200).json("doc eliminado")
+            return res.status(200).send("doc eliminado")
         }
+    }
       ;
      
 
